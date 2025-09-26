@@ -1,0 +1,77 @@
+/* ...existing code... */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    padding: 1rem 2rem;
+}
+
+.navbar-logo {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links a {
+    color: #ff0000;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color .4s;
+}
+
+.navbar-links a:hover {
+    color: #ffffff;
+    background: #ff0000;
+    padding: 15px 15px;
+    border-radius: 5px;
+}
+/* ...existing code... */
+
+.navbar-toggle {
+    display: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .navbar-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        gap: 0;
+    }
+    .navbar-links.active {
+        display: flex;
+    }
+    .navbar-links li {
+        width: 100%;
+    }
+    .navbar-links a {
+        display: block;
+        padding: 1rem 2rem;
+        border-radius: 0;
+    }
+    .navbar-toggle {
+        display: block;
+        margin-left: auto;
+    }
+}
+
+
+/* ...existing code... */
+/*
