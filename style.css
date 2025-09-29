@@ -1,16 +1,47 @@
-/* ...existing code... */
+body {
+    margin: 0;
+    padding-top: 70px; /* Prevent content hiding under navbar */
+    font-family: Arial, sans-serif;
+    background: #000000;
+}
+
 .navbar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 100;
+    background: transparent;
+    box-shadow: none;
+    transition: background 0.4s, box-shadow 0.4s;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: #333;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
+    height: 70px;
+}
+
+.navbar.scrolled {
+    background: #eb0d0d;
+    box-shadow: 20px 20px 20px rgba(0, 204, 255, 0.452);
+    opacity: 90%;
 }
 
 .navbar-logo {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: bold;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.navbar-toggle {
+    display: none;
+    font-size: 2rem;
+    color: #fff;
+    margin-left: 90%;
+    margin-top: -10%;
+    cursor: pointer;
 }
 
 .navbar-links {
@@ -19,41 +50,90 @@
     gap: 1.5rem;
     margin: 0;
     padding: 0;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.navbar-links li {
+    position: relative;
 }
 
 .navbar-links a {
-    color: #ff0000;
+    color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
-    transition: color .4s;
-}
-
-.navbar-links a:hover {
-    color: #ffffff;
-    background: #ff0000;
-    padding: 15px 15px;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
+    transition: color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
+    display: block;
 }
-/* ...existing code... */
 
-.navbar-toggle {
-    display: none;
-    font-size: 2rem;
+.navbar-links a:hover,
+.dropdown-menu li a:hover {
     color: #fff;
-    cursor: pointer;
+    background: #ff0000;
+    transform: scale(1.08);
+    box-shadow: 0 2px 8px rgba(255,0,0,0.2);
 }
 
-/* Responsive styles */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    background: #222;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-radius: 0 0 8px 8px;
+    padding: 0.5rem 0;
+    z-index: 10;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown.open .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    color: #fff;
+    padding: 0.7rem 1.2rem;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 0;
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        padding: 0 1rem;
+    }
+    .navbar-logo {
+        font-size: 1.3rem;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0 1rem;
+    }
+    .navbar-toggle {
+        display: block;
     }
     .navbar-links {
         flex-direction: column;
         width: 100%;
         display: none;
         gap: 0;
+        background: #222;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     .navbar-links.active {
         display: flex;
@@ -62,16 +142,279 @@
         width: 100%;
     }
     .navbar-links a {
-        display: block;
         padding: 1rem 2rem;
         border-radius: 0;
+        font-size: 1.1rem;
     }
-    .navbar-toggle {
-        display: block;
-        margin-left: auto;
+    .dropdown-menu {
+        position: static;
+        min-width: 0;
+        box-shadow: none;
+        border-radius: 0;
+        background: #333;
+        padding-left: 1rem;
     }
 }
 
+.carousel {
+    position: relative;
+    width: 100%;
+    margin: 2rem auto;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    background: #222;
+    top: -1rem;
+    opacity: 70%;
+    
+}
 
 /* ...existing code... */
-/*
+.carousel-images {
+    position: relative;
+    width: 100%;
+    height: 750px;
+    overflow: hidden;
+    top: 0rem;
+}
+
+.carousel-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 750px;
+    object-fit: cover;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.6s cubic-bezier(.77,0,.18,1), opacity 0.6s;
+    z-index: 1;
+}
+
+.carousel-img.active {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 2;
+}
+
+.carousel-img.slide-out-left {
+    transform: translateX(-100%);
+    opacity: 0;
+    z-index: 1;
+}
+
+.carousel-img.slide-in-right {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 2;
+}
+
+.carousel-img.slide-out-right {
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: 1;
+}
+
+.carousel-img.slide-in-left {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 2;
+}
+/* ...existing code... */
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    font-size: 2.5rem;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    z-index: 3;
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.carousel-btn.prev {
+    left: 25px;
+}
+
+.carousel-btn.next {
+    right: 25px;
+}
+
+.carousel-btn:hover {
+    background: #ff0000;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(255,0,0,0.3);
+}
+
+
+.carousel {
+    position: relative;
+    /* ...existing code... */
+}
+
+.carousel-lines {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 4;
+}
+
+
+@media (max-width: 500px) {
+    .carousel {
+        width: 100%;
+        min-width: 0;
+        border-radius: 0;
+    }
+    .carousel-images,
+    .carousel-img {
+        height: 180px;
+    }
+    .navbar-links a {
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Make carousel buttons easier to tap on mobile */
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+@media (max-width: 500px) {
+    .carousel-btn {
+        font-size: 1.5rem;
+        padding: 0.3rem 0.7rem;
+    }
+}
+
+.line {
+    position: absolute;
+    width: 4px;
+    height: 80px;
+    border-radius: 2px;
+    opacity: 0.7;
+    animation: floatLine 6s infinite linear;
+}
+
+.line1 {
+    background: linear-gradient(180deg, #ff0000, #ffd700);
+    left: 10%; top: 80%;
+    animation-duration: 7s;
+    animation-delay: 0s;
+}
+
+.line2 {
+    background: linear-gradient(180deg, #00ffea, #007bff);
+    left: 80%; top: 10%;
+    animation-duration: 5s;
+    animation-delay: 1s;
+}
+
+.line3 {
+    background: linear-gradient(180deg, #ffd700, #ff0000);
+    left: 50%; top: 90%;
+    animation-duration: 6s;
+    animation-delay: 2s;
+}
+
+.line4 {
+    background: linear-gradient(180deg, #00ff00, #007bff);
+    left: 20%; top: 20%;
+    animation-duration: 8s;
+    animation-delay: 1.5s;
+}
+
+.line5 {
+    background: linear-gradient(180deg, #007bff, #00ffea);
+    left: 70%; top: 70%;
+    animation-duration: 6.5s;
+    animation-delay: 0.5s;
+}
+
+@keyframes floatLine {
+    0% { transform: translateY(0) scaleY(1); opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100px) scaleY(1.5); opacity: 0.3; }
+}
+
+
+.carousel {
+    position: relative;
+    /* ...existing code... */
+}
+
+.carousel-bubbles {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: floatBubble 6s infinite linear;
+}
+
+.bubble1 {
+    width: 30px; height: 30px;
+    background: #ff0000;
+    left: 10%; top: 80%;
+    animation-duration: 7s;
+}
+
+.bubble2 {
+    width: 20px; height: 20px;
+    background: #00ffea;
+    left: 80%; top: 10%;
+    animation-duration: 5s;
+}
+
+.bubble3 {
+    width: 25px; height: 25px;
+    background: #ffd700;
+    left: 50%; top: 90%;
+    animation-duration: 6s;
+}
+
+.bubble4 {
+    width: 15px; height: 15px;
+    background: #00ff00;
+    left: 20%; top: 20%;
+    animation-duration: 8s;
+}
+
+.bubble5 {
+    width: 18px; height: 18px;
+    background: #007bff;
+    left: 70%; top: 70%;
+    animation-duration: 6.5s;
+}
+
+@keyframes floatBubble {
+    0% { transform: translateY(0) scale(1); opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-80px) scale(1.2); opacity: 0.5; }
+}
+
+.cover{
+    position: absolute;
+    top: 60rem;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
