@@ -4,7 +4,49 @@ body {
     font-family: Arial, sans-serif;
     background: #000000;
 }
+/* Loader styles */
+#loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: linear-gradient(135deg, #ff0000 0%, #ffd700 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.6s;
+}
 
+.loader-spinner {
+    width: 70px;
+    height: 70px;
+    border: 8px solid #fff;
+    border-top: 8px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+    margin-bottom: 30px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
+
+.loader-text {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    animation: fadeInText 2s ease-in-out;
+}
+
+@keyframes fadeInText {
+    0% { opacity: 0; transform: scale(0.8);}
+    100% { opacity: 1; transform: scale(1);}
+}
 .navbar {
     position: fixed;
     top: 0; left: 0;
