@@ -13,12 +13,12 @@
     <div class="loader-text">winning city</div>
 </div>
    <nav class="navbar" id="main-navbar">
-    <div class="navbar-logo"><img src="img/Retouch_20241018_160117602.png" alt="" width="10%" height="10%" style="border-radius: 50px;"></div>
-
+    <div class="navbar-logo">
+        <img src="img/Retouch_20241018_160117602.png" alt="" class="logo-img">
+    </div>
     <ul class="navbar-links">
         <li class="dropdown">
             <a href="#">Home</a>
-            
         </li>
         <li class="dropdown">
             <a href="#">Media</a>
@@ -42,7 +42,9 @@
             </ul>
         </li>
     </ul>
-    <div class="navbar-toggle" id="navbar-toggle">&#9776;</div>
+    <div class="navbar-toggle" id="navbar-toggle">
+        <span class="toggle-icon">&#9776;</span>
+    </div>
 </nav>
 <div class="carousel">
 <div class="carousel-lines">
@@ -144,10 +146,11 @@
 </script>
 <script>
     const toggle = document.getElementById('navbar-toggle');
-    const links = document.querySelector('.navbar-links');
-    toggle.onclick = function() {
-        links.classList.toggle('active');
-    };
+const links = document.querySelector('.navbar-links');
+toggle.onclick = function() {
+    links.classList.toggle('active');
+    toggle.classList.toggle('active');
+};
 
     // Responsive dropdown for mobile
     document.querySelectorAll('.dropdown > a').forEach(item => {
