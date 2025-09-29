@@ -47,7 +47,15 @@ body {
     0% { opacity: 0; transform: scale(0.8);}
     100% { opacity: 1; transform: scale(1);}
 }
+/* ...existing code... */
+
+
 .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    height: 70px;
     position: fixed;
     top: 0; left: 0;
     width: 100%;
@@ -55,36 +63,116 @@ body {
     background: transparent;
     box-shadow: none;
     transition: background 0.4s, box-shadow 0.4s;
-    display: flex;
-    align-items: center;
-    padding: 0 2rem;
-    height: 70px;
-}
-
-.navbar.scrolled {
-    background: #eb0d0d;
-    box-shadow: 20px 20px 20px rgba(0, 204, 255, 0.452);
-    opacity: 90%;
+    box-sizing: border-box;
 }
 
 .navbar-logo {
-    color: #fff;
-    font-size: 1.7rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.logo-img {
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
-    margin-top: 10px;
+    object-fit: cover;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
 .navbar-toggle {
     display: none;
     font-size: 2rem;
     color: #fff;
-    margin-left: 90%;
-    margin-top: -10%;
     cursor: pointer;
+    margin-left: 1rem;
 }
+
+@media (max-width: 900px) {
+    .navbar {
+        padding: 0 0.5rem;
+    }
+    .logo-img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0 0.5rem;
+    }
+    .navbar-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        gap: 0;
+        background: #222;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .navbar-links.active {
+        display: flex;
+    }
+    .navbar-links li {
+        width: 100%;
+    }
+    .navbar-links a {
+        padding: 1rem 2rem;
+        border-radius: 0;
+        font-size: 1.1rem;
+    }
+    .dropdown-menu {
+        position: static;
+        min-width: 0;
+        box-shadow: none;
+        border-radius: 0;
+        background: #333;
+        padding-left: 1rem;
+    }
+    .navbar-toggle {
+        display: block;
+        margin-left: auto;
+    }
+}
+
+/* ...existing code... */
+/* ...existing code... */
+
+.navbar-toggle .toggle-icon {
+    transition: transform 0.3s;
+    font-size: 2rem;
+    display: inline-block;
+}
+
+.navbar-toggle.active .toggle-icon {
+    transform: rotate(90deg) scale(1.2);
+}
+
+/* Optional: Use a cross symbol when active */
+.navbar-toggle.active .toggle-icon::before {
+    content: "\2716"; /* Unicode for heavy multiplication X */
+    color: #ff0000;
+}
+
+.navbar-toggle .toggle-icon::before {
+    content: "\2630"; /* Unicode for hamburger */
+    color: #fff;
+}
+
+/* ...existing code... */
 
 .navbar-links {
     list-style: none;
@@ -198,23 +286,26 @@ body {
     }
 }
 
+/* ...existing code... */
+
 .carousel {
     position: relative;
     width: 100%;
+    max-width: 900px;
     margin: 2rem auto;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     background: #222;
     top: -1rem;
-    opacity: 70%;
-    
+    opacity: 0.7;
 }
 
-/* ...existing code... */
 .carousel-images {
     position: relative;
     width: 100%;
-    height: 750px;
+    height: 60vw; /* Responsive height for mobile/laptop */
+    max-height: 750px;
+    min-height: 180px;
     overflow: hidden;
     top: 0rem;
 }
@@ -224,7 +315,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 750px;
+    height: 100%;
     object-fit: cover;
     opacity: 0;
     transform: translateX(100%);
@@ -238,6 +329,34 @@ body {
     z-index: 2;
 }
 
+/* ...existing code... */
+
+/* Responsive carousel for small screens */
+@media (max-width: 900px) {
+    .carousel {
+        max-width: 100vw;
+    }
+    .carousel-images {
+        height: 50vw;
+        max-height: 400px;
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 500px) {
+    .carousel {
+        max-width: 100vw;
+        border-radius: 0;
+    }
+    .carousel-images {
+        height: 40vw;
+        max-height: 200px;
+        min-height: 120px;
+    }
+    .carousel-img {
+        height: 100%;
+    }
+}
 .carousel-img.slide-out-left {
     transform: translateX(-100%);
     opacity: 0;
@@ -349,7 +468,30 @@ body {
     opacity: 0.7;
     animation: floatLine 6s infinite linear;
 }
+/* ...existing code... */
 
+/* Default sizes for desktop/laptop */
+
+
+/* Bubbles default */
+.bubble1 { width: 30px; height: 30px; }
+.bubble2 { width: 20px; height: 20px; }
+.bubble3 { width: 25px; height: 25px; }
+.bubble4 { width: 15px; height: 15px; }
+.bubble5 { width: 18px; height: 18px; }
+
+/* Smaller lines and bubbles for mobile */
+@media (max-width: 500px) {
+    .line {
+        width: 2px;
+        height: 40px;
+    }
+    .line1 { width: 16px; height: 16px; }
+    .line2 { width: 12px; height: 12px; }
+    .line3 { width: 14px; height: 14px; }
+    .line4 { width: 10px; height: 10px; }
+    .line5 { width: 12px; height: 12px; }
+}
 .line1 {
     background: linear-gradient(180deg, #ff0000, #ffd700);
     left: 10%; top: 80%;
