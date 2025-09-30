@@ -605,7 +605,9 @@ body {
 
 .carousel-actions {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: flex-start; /* allows different heights */
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -622,6 +624,9 @@ body {
     box-shadow: 0 2px 8px rgba(255,0,0,0.15);
     position: relative;
     transition: background 0.3s, color 0.3s;
+    width: 220px; /* fixed width for both buttons */
+    min-height: 48px; /* allows different heights if needed */
+    white-space: nowrap; /* Prevents text from wrapping */
 }
 
 .action-btn:hover {
@@ -638,7 +643,7 @@ body {
     100% { transform: scale(1) rotate(0deg);}
 }
 
-/* Responsive for mobile */
+/* Responsive for mobile: stack buttons vertically */
 @media (max-width: 600px) {
     .carousel-actions {
         flex-direction: column;
@@ -646,9 +651,11 @@ body {
         align-items: center;
     }
     .action-btn {
-        width: 80%;
+        width: 90%;      /* Both buttons same width on mobile */
         font-size: 1rem;
         padding: 0.8rem 0;
+        min-height: 40px;
+        white-space: normal; /* Allow wrapping if needed on small screens */
     }
 }
 .carousel-welcome {
@@ -755,6 +762,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    outline: 2px solid white;
 }
 
 .cover-btn:hover {
@@ -762,6 +770,7 @@ body {
     color: #ff0000;
     transform: translate(-50%, -60%) scale(1.05) rotate(-2deg);
     animation: shakeBtn 0.4s;
+    outline: 2px solid red;
 }
 
 @keyframes shakeBtn {
@@ -805,11 +814,11 @@ body {
 @media (max-width: 600px) {
     .cover-content {
         width: 98%;
-        min-height: 140px;
+        min-height: 340px;
         border-radius: 12px;
     }
     .cover-bg {
-        height: 140px;
+        height: 340px;
     }
     .cover-btn {
         font-size: 1rem;
