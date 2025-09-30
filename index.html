@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Add this just after <body> -->
@@ -61,6 +62,15 @@
     <div class="bubble bubble4"></div>
     <div class="bubble bubble5"></div>
 </div>
+<div class="carousel">
+    <!-- ...carousel-lines and carousel-bubbles... -->
+
+    <div class="carousel-welcome">
+        WELCOME TO WINNING LIFE BIBLE CHURCH
+    </div>
+
+    <!-- ...carousel buttons and images... -->
+
     <button class="carousel-btn prev">&#10094;</button>
     <div class="carousel-images">
                 <img src="img/blue.JPG" class="carousel-img active" alt="Image 1">
@@ -69,7 +79,16 @@
             </div>
     <button class="carousel-btn next">&#10095;</button>
 </div>
+<!-- ...existing code... -->
+<div class="carousel">
+    <!-- ...carousel content... -->
+</div>
 
+<div class="carousel-actions">
+    <button class="action-btn">Prayer Request</button>
+    <button class="action-btn">Give Online</button>
+</div>
+<!-- ...existing code... -->
 <div class="cover">
 
 </div>
@@ -162,15 +181,14 @@ toggle.onclick = function() {
         });
     });
 
-    // Navbar background on scroll
     const navbar = document.getElementById('main-navbar');
-    window.addEventListener('scroll', function() {
-        if(window.scrollY > 10) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+window.addEventListener('scroll', function() {
+    if(window.scrollY > 80) { // Increased distance before bg appears
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
 </script>
 <script>
 window.addEventListener("load", function() {
