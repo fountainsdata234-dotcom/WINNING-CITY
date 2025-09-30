@@ -619,24 +619,25 @@ body {
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s, color 0.3s, transform 0.3s;
     box-shadow: 0 2px 8px rgba(255,0,0,0.15);
+    position: relative;
+    transition: background 0.3s, color 0.3s;
 }
 
 .action-btn:hover {
     background: #fff;
     color: #ff0000;
-    /* Only move up and shake, don't stack transforms */
-    animation: shakeBtn 0.4s;
+    animation: shakeInPlace 0.4s;
 }
 
-@keyframes shakeBtn {
-    0%   { transform: translateY(-10px) scale(1.05) rotate(-2deg);}
-    20%  { transform: translateY(-10px) scale(1.05) rotate(2deg);}
-    40%  { transform: translateY(-10px) scale(1.05) rotate(-2deg);}
-    60%  { transform: translateY(-10px) scale(1.05) rotate(2deg);}
-    100% { transform: translateY(-10px) scale(1.05) rotate(0deg);}
+@keyframes shakeInPlace {
+    0%   { transform: scale(1.05) rotate(-2deg);}
+    20%  { transform: scale(1.05) rotate(2deg);}
+    40%  { transform: scale(1.05) rotate(-2deg);}
+    60%  { transform: scale(1.05) rotate(2deg);}
+    100% { transform: scale(1) rotate(0deg);}
 }
+
 /* Responsive for mobile */
 @media (max-width: 600px) {
     .carousel-actions {
@@ -650,11 +651,6 @@ body {
         padding: 0.8rem 0;
     }
 }
-/* ...existing code... */
-
-/* ...existing code... */
-
-/* ...existing code... */
 .carousel-welcome {
     position: absolute;
     top: 18%;
