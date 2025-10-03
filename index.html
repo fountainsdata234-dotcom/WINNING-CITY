@@ -1,846 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar with Click Dropdown</title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-* {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+</head>
+<body>
+
+    <div id="loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">winning city
+      <br><img src="img/Retouch_20241018_160117602.png" alt="" style="width: 50px; height: 50px; border-radius: 50px; position: absolute; 
+      position: absolute; left: 30%;">
+    </div>
+</div>
+  <nav id="navbar">
+    <div class="logo">WINNING <span>CITY</span></div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li>
+        <a href="#" class="dropdown-toggle">About ▾</a>
+        <div class="dropdown">
+          <a href="#">Who We Are</a>
+          <a href="#">Our Team</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">Services ▾</a>
+        <div class="dropdown">
+          <a href="#">Web Design</a>
+          <a href="#">Development</a>
+          <a href="#">SEO</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">Blog ▾</a>
+        <div class="dropdown">
+          <a href="#">Latest Posts</a>
+          <a href="#">Categories</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">Contact ▾</a>
+        <div class="dropdown">
+          <a href="#">Email Us</a>
+          <a href="#">Location</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+</head>
+<div class="carousel">
+    <div class="carousel-lines">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+        <div class="line line4"></div>
+        <div class="line line5"></div>
+    </div>
+    <div class="carousel-bubbles">
+        <div class="bubble bubble1"></div>
+        <div class="bubble bubble2"></div>
+        <div class="bubble bubble3"></div>
+        <div class="bubble bubble4"></div>
+        <div class="bubble bubble5"></div>
+    </div>
+    <div class="carousel-welcome">
+        WELCOME TO WINNING LIFE BIBLE CHURCH
+    </div>
+    <button class="carousel-btn prev">&#10094;</button>
+    <div class="carousel-images">
+        <video src="video/VID-20251003-WA0015.mp4" class="carousel-img" muted autoplay infinite style=" filter: blur(10px);"></video>
+        <video src="video/VID-20251003-WA0016.mp4" class="carousel-img" muted autoplay style=" filter: blur(10px);"></video>
+        <video src="video/VID-20251003-WA0017.mp4" class="carousel-img" muted autoplay style=" filter: blur(10px);"></video>
+    </div>
+    <button class="carousel-btn next">&#10095;</button>
+    <div class="extra-buttons">
+      <a href="#"><button class="extra-btn">Prayer Request</button></a>
+      <a href="#"><button class="extra-btn">Give Online</button></a>
+    </div>
+</div>
+<!-- ...existing code... -->
+ <div class="cover">
+    <div class="cover-content">
+    <div class="cover-label">watch live</div>
+    <div class="cover-bg">
+        <button class="cover-btn">watch our live sermon here</button>
+    </div>
+</div>
+</div>
+<div class="cover second-cover">
+    <div class="cover-content">
+        <div class="cover-bg second-bg">
+
+            <div class="second-welcome">
+                UPCOMING EVENT
+            </div>
+            <div class="second-bg">
+    <div class="pushup-overlay">
+        <img src="img/IMG-20240525-WA0035.jpg" alt="Pushup Service" class="pushup-img">
+        <div class="pushup-text">prophetic push-up service</div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+<body>
+<script>
+    const images = document.querySelectorAll('.carousel-img');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    let current = 0;
+    let interval;
+    let isSliding = false;
+
+    function showImage(next, direction) {
+        if (isSliding || next === current) return;
+        isSliding = true;
+
+        const currentImg = images[current];
+        const nextImg = images[next];
+
+        // Remove all slide classes
+        images.forEach(img => {
+            img.classList.remove('active', 'slide-in-left', 'slide-in-right', 'slide-out-left', 'slide-out-right');
+        });
+
+        // Set slide out direction for current image
+        currentImg.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
+
+        // Set slide in direction for next image
+        nextImg.classList.add(direction === 'next' ? 'slide-in-right' : 'slide-in-left', 'active');
+
+        setTimeout(() => {
+            images.forEach(img => {
+                img.classList.remove('slide-in-left', 'slide-in-right', 'slide-out-left', 'slide-out-right');
+            });
+            nextImg.classList.add('active');
+            current = next;
+            isSliding = false;
+        }, 600); // Match transition duration
     }
-#loader {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: linear-gradient(135deg, #ff0000 0%, #ffd700 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 0.6s;
-}
 
-.loader-spinner {
-    width: 70px;
-    height: 70px;
-    border: 8px solid #fff;
-    border-top: 8px solid #007bff;
-    border-radius: 50%;
-    animation: spin 1.2s linear infinite;
-    margin-bottom: 30px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg);}
-    100% { transform: rotate(360deg);}
-}
-
-.loader-text {
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: #fff;
-    letter-spacing: 3px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    font-family: 'Segoe UI', Arial, sans-serif;
-    animation: fadeInText 2s ease-in-out;
-}
-
-@keyframes fadeInText {
-    0% { opacity: 0; transform: scale(0.8);}
-    100% { opacity: 1; transform: scale(1);}
-}
-/* ...existing code... */
-    body {
-      font-family: Arial, sans-serif;
-      min-height: 2000px; /* just to allow scrolling */
-      background: #000;
-    }
-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      transition: 0.3s;
-      z-index: 1000;
-      background: transparent;
+    function nextImage() {
+        let next = (current + 1) % images.length;
+        showImage(next, 'next');
     }
 
-    nav.scrolled {
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(5px);
+    function prevImage() {
+        let next = (current - 1 + images.length) % images.length;
+        showImage(next, 'prev');
     }
+
+    function startAutoSlide() {
+        interval = setInterval(nextImage, 3000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(interval);
+    }
+
+    prevBtn.onclick = () => {
+        stopAutoSlide();
+        prevImage();
+        startAutoSlide();
+    };
+
+    nextBtn.onclick = () => {
+        stopAutoSlide();
+        nextImage();
+        startAutoSlide();
+    };
+
+    // Initialize
+    images[current].classList.add('active');
+    startAutoSlide();
+</script>
+
   
-    nav .logo {
-      color: #0077ff;
-      font-size: 30px;
-      font-weight: 800;
-      font-style: italic;
-    }
-    nav .logo span{
-        color: red;
-    }
-    @media (max-width: 768px){
-        nav .logo span{
-            position: absolute;
-            top: 80%;
-            left: 20%;
-        }
-    } 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 16px;
-      transition: color 0.3s;
-      display: block;
-      padding: 8px 0;
-    }
- nav ul li a.active{
-    color: red;
- }
-    nav ul li a:hover {
-      color: #ff9800;
-    }
-
-    /* Dropdown */
-    nav ul li .dropdown {
-      display: none;
-      flex-direction: column;
-      background: rgba(0, 0, 0, 0.9);
-      margin-top: 5px;
-    }
-
-    nav ul li .dropdown a {
-      padding: 10px;
-      color: #fff;
-      display: block;
-    }
-
-    nav ul li .dropdown a:hover {
-      background: #ff9800;
-      color: #000;
-    }
-
-    nav ul li.show .dropdown {
-      display: flex;
-    }
-
-    /* Mobile menu */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-
-    .menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background: #003cff;
-      transition: 0.3s;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 15px 20px;
+  <script>
+    // Navbar background on scroll
+    window.addEventListener("scroll", function () {
+      const navbar = document.getElementById("navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
       }
+    });
+
+    // Toggle mobile menu
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Dropdown toggle (works for both desktop & mobile)
+    document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        const parentLi = toggle.parentElement;
+
+        // close other dropdowns
+        document.querySelectorAll("nav ul li").forEach(li => {
+          if (li !== parentLi) li.classList.remove("show");
+        });
+
+        // toggle clicked one
+        parentLi.classList.toggle("show");
+      });
+    });
+  </script>
+  <script>
+window.addEventListener("load", function() {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 600); // matches CSS transition
+});
+</script>
+    </body>
+</html>
 
-      nav ul {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        flex-direction: column;
-        width: 230px;
-        display: none;
-        padding: 10px;
-      }
 
-      nav ul.active {
-        display: flex;
-      }
 
-      nav ul li {
-        width: 100%;
-      }
-
-      nav ul li .dropdown {
-        position: static;
-        background: rgba(0, 0, 0, 0.9);
-        display: none;
-      }
-
-      nav ul li.show .dropdown {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
-    }
-
-    .carousel {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    margin: 2rem auto;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    background: #222;
-    top: -2rem;
-
-}
-
-.carousel-images {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Responsive height for mobile/laptop */
-    overflow: hidden;
-    top: 0rem;
-    object-fit: cover;
-}
-
-.carousel-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: transform 0.6s cubic-bezier(.77,0,.18,1), opacity 0.6s;
-    z-index: 1;
-}
-.carousel-img.active {
-    opacity: 1;
-    transform: translateX(0);
-    z-index: 2;
-}
-
-.carousel-img.slide-out-left {
-    transform: translateX(-100%);
-    opacity: 0;
-    z-index: 1;
-}
-
-.carousel-img.slide-in-right {
-    transform: translateX(0);
-    opacity: 1;
-    z-index: 2;
-}
-
-.carousel-img.slide-out-right {
-    transform: translateX(100%);
-    opacity: 0;
-    z-index: 1;
-}
-
-.carousel-img.slide-in-left {
-    transform: translateX(0);
-    opacity: 1;
-    z-index: 2;
-}
-/* ...existing code... */
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    color: #fff;
-    border: none;
-    font-size: 2.5rem;
-    padding: 0.5rem 1.2rem;
-    cursor: pointer;
-    z-index: 3;
-    border-radius: 50%;
-    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.carousel-btn.prev {
-    left: 25px;
-}
-
-.carousel-btn.next {
-    right: 25px;
-}
-
-.carousel-btn:hover {
-    color: #fff;
-    box-shadow: 0 4px 16px rgba(255,0,0,0.3);
-}
-
-
-.carousel {
-    position: relative;
-    /* ...existing code... */
-}
-
-.carousel-lines {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 4;
-}
-
-
-
-
-/* Make carousel buttons easier to tap on mobile */
-
-.carousel-btn.prev {
-    left: 10px;
-}
-
-.carousel-btn.next {
-    right: 10px;
-}
-
-@media (max-width: 500px) {
-    .carousel-btn {
-        font-size: 1.5rem;
-        padding: 0.3rem 0.7rem;
-    }
-}
-
-.line {
-    position: absolute;
-    width: 1px;
-    height: 80px;
-    border-radius: 2px;
-    opacity: 0.7;
-    animation: floatLine 6s infinite linear;
-}
-/* ...existing code... */
-
-/* Default sizes for desktop/laptop */
-
-
-/* Bubbles default */
-.bubble1 { width: 30px; height: 30px; }
-.bubble2 { width: 20px; height: 20px; }
-.bubble3 { width: 25px; height: 25px; }
-.bubble4 { width: 15px; height: 15px; }
-.bubble5 { width: 18px; height: 18px; }
-
-/* Smaller lines and bubbles for mobile */
-@media (max-width: 500px) {
-    .line {
-        width: 2px;
-        height: 40px;
-    }
-    .line1 { width: 16px; height: 16px; }
-    .line2 { width: 12px; height: 12px; }
-    .line3 { width: 14px; height: 14px; }
-    .line4 { width: 10px; height: 10px; }
-    .line5 { width: 12px; height: 12px; }
-}
-
-.line1 {
-    background: linear-gradient(180deg, #ff0000, #ffd700);
-    left: 10%; top: 80%;
-    animation-duration: 7s;
-    animation-delay: 0s;
-}
-
-.line2 {
-    background: linear-gradient(180deg, #00ffea, #007bff);
-    left: 80%; top: 10%;
-    animation-duration: 5s;
-    animation-delay: 1s;
-}
-
-.line3 {
-    background: linear-gradient(180deg, #ffd700, #ff0000);
-    left: 50%; top: 90%;
-    animation-duration: 6s;
-    animation-delay: 2s;
-}
-
-.line4 {
-    background: linear-gradient(180deg, #00ff00, #007bff);
-    left: 20%; top: 20%;
-    animation-duration: 8s;
-    animation-delay: 1.5s;
-}
-
-.line5 {
-    background: linear-gradient(180deg, #007bff, #00ffea);
-    left: 70%; top: 70%;
-    animation-duration: 6.5s;
-    animation-delay: 0.5s;
-}
-
-@keyframes floatLine {
-    0% { transform: translateY(0) scaleY(1); opacity: 0.7; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-100px) scaleY(1.5); opacity: 0.3; }
-}
-
-
-.carousel {
-    position: relative;
-    /* ...existing code... */
-}
-
-.carousel-bubbles {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 4;
-}
-
-.bubble {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: floatBubble 6s infinite linear;
-}
-
-.bubble1 {
-    width: 30px; height: 30px;
-    background: #ff0000;
-    left: 10%; top: 80%;
-    animation-duration: 7s;
-}
-
-.bubble2 {
-    width: 20px; height: 20px;
-    background: #00ffea;
-    left: 80%; top: 10%;
-    animation-duration: 5s;
-}
-
-.bubble3 {
-    width: 25px; height: 25px;
-    background: #ffd700;
-    left: 50%; top: 90%;
-    animation-duration: 6s;
-}
-
-.bubble4 {
-    width: 15px; height: 15px;
-    background: #00ff00;
-    left: 20%; top: 20%;
-    animation-duration: 8s;
-}
-
-.bubble5 {
-    width: 18px; height: 18px;
-    background: #007bff;
-    left: 70%; top: 70%;
-    animation-duration: 6.5s;
-}
-
-@keyframes floatBubble {
-    0% { transform: translateY(0) scale(1); opacity: 0.7; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-80px) scale(1.2); opacity: 0.5; }
-}
-
-.carousel-welcome {
-    position: absolute;
-    top: 50rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    text-align: center;
-    font-family: 'Dancing Script', 'Pacifico', cursive, Arial, sans-serif;
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: #ffffff;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    z-index: 10;
-    opacity: 0;
-    filter: blur(14px);
-    animation: welcomeFloatUp 2.5s cubic-bezier(.77,0,.18,1) alternate infinite;
-}
-
-@keyframes welcomeFloatUp {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(60px) scale(0.7) rotate(360deg);
-        filter: blur(18px);
-    }
-    40% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-10px) scale(1.1) rotate(0deg);
-        filter: blur(4px);
-    }
-    70% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0px) scale(1.05) rotate(0deg);
-        filter: blur(0px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0px) scale(1) rotate(0deg);
-        filter: blur(0px);
-        color: #ffffff;
-        font-weight: 900;
-    }
-}
-
-/* Responsive for mobile */
-@media (max-width: 600px) {
-    .carousel-welcome {
-        font-size: 2.2rem;
-        top: 50%;
-        width: 98%;
-    }
-}
-
-/* ...existing code... */
-.extra-buttons {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-      z-index: 10;
-    }
-
-    .extra-btn {
-      background: rgba(0, 0, 0, 0.6);
-      background: red;
-      color: #fff;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 30px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-     
-    }
-
-    .extra-btn:hover {
-    background: #fff;
-    color: #ff0000;
-    animation: shakeInPlace 0.4s;
-      transform: scale(1.05);
-    }
-
-    
-@keyframes shakeInPlace {
-    0%   { transform: scale(1.05) rotate(-2deg);}
-    20%  { transform: scale(1.05) rotate(2deg);}
-    40%  { transform: scale(1.05) rotate(-2deg);}
-    60%  { transform: scale(1.05) rotate(2deg);}
-    100% { transform: scale(1) rotate(0deg);}
-}
-
-
-    .cover {
-    width: 100%;
-    min-height: 400px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-    box-sizing: border-box;
-    position: relative;
-}
-
-.cover-content {
-    width: 70%;
-    max-width: 600px;
-    min-height: 320px;
-    border-radius: 30px;
-    overflow: hidden;
-    position: relative;
-    background: #eee;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cover-bg {
-    width: 100%;
-    height: 320px;
-    background: url('img/alex-gallegos-qrjlTYoSriE-unsplash\ \(1\).jpg') center center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.cover-btn {
-    background: #ff0000;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    padding: 1rem 2.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(255,0,0,0.15);
-    transition: background 0.3s, color 0.3s, transform 0.3s;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    outline: 2px solid white;
-}
-
-.cover-btn:hover {
-    background: #fff;
-    color: #ff0000;
-    transform: translate(-50%, -60%) scale(1.05) rotate(-2deg);
-    animation: shakeBtn 0.4s;
-    outline: 2px solid red;
-}
-
-@keyframes shakeBtn {
-    10% { transform: translate(-50%, -60%) scale(1.05) rotate(-2deg) translateX(-3px);}
-    20% { transform: translate(-50%, -60%) scale(1.05) rotate(2deg) translateX(3px);}
-    30% { transform: translate(-50%, -60%) scale(1.05) rotate(-2deg) translateX(-3px);}
-    40% { transform: translate(-50%, -60%) scale(1.05) rotate(2deg) translateX(3px);}
-    100% { transform: translate(-50%, -60%) scale(1.05) rotate(0deg) translateX(0);}
-}
-
-/* Slanted label at top right */
-.cover-label {
-    position: absolute;
-    top: 18px;
-    right: -40px;
-    background: #fff;
-    color: #ff0000;
-    font-family: 'Dancing Script', 'Pacifico', cursive, Arial, sans-serif;
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: 0.4rem 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transform: rotate(25deg);
-    z-index: 2;
-    letter-spacing: 2px;
-}
-
-/* Responsive styles */
-@media (max-width: 900px) {
-    .cover-content {
-        width: 90%;
-        min-height: 220px;
-        border-radius: 18px;
-    }
-    .cover-bg {
-        height: 220px;
-    }
-}
-
-@media (max-width: 600px) {
-    .cover-content {
-        width: 98%;
-        min-height: 340px;
-        border-radius: 12px;
-    }
-    .cover-bg {
-        height: 340px;
-    }
-    .cover-btn {
-        font-size: 1rem;
-        padding: 0.7rem 1rem;
-    }
-    .cover-label {
-        font-size: 0.9rem;
-        padding: 0.2rem 1.2rem;
-        top: 8px;
-        right: -25px;
-        border-radius: 8px;
-    }
-}
-/* Second cover section */
-.second-cover {
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-    box-sizing: border-box;
-    position: relative;
-    width: 100%;
-    height: 200%;
-    margin-top: -3rem;
-}
-
-.second-cover .cover-content {
-    width: 70%;
-    max-width: 600px;
-    min-height: 320px;
-    border-radius: 30px;
-    overflow: hidden;
-    position: relative;
-    background: #eee;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.second-bg {
-    width: 100%;
-    height: 100%;
-    background: url('img/your-second-image.jpg') center center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 6px 32px rgba(0,0,0,0.18);
-    transition: 
-        box-shadow 0.4s cubic-bezier(.77,0,.18,1),
-        transform 0.4s cubic-bezier(.77,0,.18,1);
-}
-.second-bg:hover {
-    transform: translateY(-18px) scale(1.02);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.28);
-}
-.pushup-overlay {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    width: 100%; height: 100%;
-    background: rgba(255,255,255,0.97);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(100%);
-    opacity: 0;
-    transition: transform 0.5s cubic-bezier(.77,0,.18,1), opacity 0.5s cubic-bezier(.77,0,.18,1);
-    z-index: 20;
-    text-align: center;
-    padding: 2rem 1rem;
-}
-
-.pushup-img {
-    width: 100%;
-    height: 100vh;
-    margin-top: 0rem;
-    object-fit: contain;
-}
-
-.pushup-text {
-    font-family: 'Dancing Script', 'Pacifico', cursive, Arial, sans-serif;
-    font-size: 2rem;
-    color: #ff0000;
-    font-weight: bold;
-    margin-top: 3rem;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.08);
-}
-
-/* Reveal overlay on hover */
-.second-bg:hover .pushup-overlay,
-.second-bg:focus-within .pushup-overlay {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* Optional: Hide the original welcome text when overlay is shown */
-.second-bg:hover .second-welcome,
-.second-bg:focus-within .second-welcome {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .pushup-img {
-        max-width: 100%;
-        max-height: 300%;
-        margin-top: 7rem;
-    }
-    .pushup-text {
-        font-size: 1.1rem;
-    }
-}
-/* Animated cursive text like carousel */
-.second-welcome {
-    position: absolute;
-    top: 38%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    text-align: center;
-    font-family: 'Dancing Script', 'Pacifico', cursive, Arial, sans-serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: black;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    z-index: 10;
-    opacity: 0;
-    animation: welcomeFloat 2.5s cubic-bezier(.77,0,.18,1) alternate infinite;
-}
-@keyframes welcomeFloat {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(60px) scale(0.7) rotate(360deg);
-        filter: blur(18px);
-    }
-    40% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-10px) scale(1.1) rotate(0deg);
-        filter: blur(4px);
-    }
-    70% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0px) scale(1.05) rotate(0deg);
-        filter: blur(0px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0px) scale(1) rotate(0deg);
-        filter: blur(0px);
-        color: #ff0000;
-        font-weight: 900;
-    }
-}
-/* Reuse the same keyframes as carousel-welcome */
-@media (max-width: 900px) {
-    .second-cover .cover-content {
-        width: 90%;
-        min-height: 220px;
-        border-radius: 18px;
-    }
-    .second-bg {
-        height: 220px;
-    }
-}
-
-@media (max-width: 600px) {
-    .second-cover .cover-content {
-        width: 98%;
-        min-height: 180px;
-        border-radius: 12px;
-    }
-    .second-bg {
-        height: 180px;
-    }
-    .second-welcome {
-        font-size: 1.1rem;
-        top: 50%;
-        width: 98%;
-    }
-}
