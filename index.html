@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WELCOME to WINNING CITY</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Pacifico&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar with Click Dropdown</title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+
 </head>
 <body>
-    <!-- Add this just after <body> -->
-<div id="loader">
-    <div class="loader-spinner"></div>
-    <div class="loader-text">winning city</div>
-</div>
-   <nav class="navbar" id="main-navbar">
-    <div class="navbar-logo">
-        <img src="img/Retouch_20241018_160117602.png" alt="" class="logo-img">
+
+    <body>
+  <nav id="navbar">
+    <div class="logo">WINNING <span>CITY</span></div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <ul class="navbar-links">
-        <li class="dropdown">
-            <a href="#">Home</a>
-        </li>
-        <li class="dropdown">
-            <a href="#">Media</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Our Team</a></li>
-                <li><a href="#">History</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">About Us</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Our Mission</a></li>
-                <li><a href="#">Our Vision</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">Contact us</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Email</a></li>
-                <li><a href="#">Phone</a></li>
-            </ul>
-        </li>
+    <ul id="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li>
+        <a href="#" class="dropdown-toggle">About ▾</a>
+        <div class="dropdown">
+          <a href="#">Who We Are</a>
+          <a href="#">Our Team</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">Services ▾</a>
+        <div class="dropdown">
+          <a href="#">Web Design</a>
+          <a href="#">Development</a>
+          <a href="#">SEO</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">Blog ▾</a>
+        <div class="dropdown">
+          <a href="#">Latest Posts</a>
+          <a href="#">Categories</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">Contact ▾</a>
+        <div class="dropdown">
+          <a href="#">Email Us</a>
+          <a href="#">Location</a>
+        </div>
+      </li>
     </ul>
-    <div class="navbar-toggle" id="navbar-toggle">
-        <span class="toggle-icon">&#9776;</span>
-    </div>
-</nav>
+  </nav>
+
+</head>
 <div class="carousel">
     <div class="carousel-lines">
         <div class="line line1"></div>
@@ -67,26 +75,42 @@
     </div>
     <button class="carousel-btn prev">&#10094;</button>
     <div class="carousel-images">
-        <img src="img/blue.JPG" class="carousel-img active" alt="Image 1">
-        <img src="img/IMG-20240525-WA0042.jpg" class="carousel-img" alt="Image 2">
-        <img src="img/IMG-20240525-WA0043.jpg" class="carousel-img" alt="Image 3">
+        <video src="video/VID-20251003-WA0015.mp4" class="carousel-img" muted autoplay infinite style=" filter: blur(10px);"></video>
+        <video src="video/VID-20251003-WA0016.mp4" class="carousel-img" muted autoplay style=" filter: blur(10px);"></video>
+        <video src="video/VID-20251003-WA0017.mp4" class="carousel-img" muted autoplay style=" filter: blur(10px);"></video>
     </div>
     <button class="carousel-btn next">&#10095;</button>
-    <div class="carousel-actions">
-        <button class="action-btn">Prayer Request</button>
-        <button class="action-btn">Give Online</button>
+    <div class="extra-buttons">
+      <a href="#"><button class="extra-btn">Prayer Request</button></a>
+      <a href="#"><button class="extra-btn">Give Online</button></a>
     </div>
-</div><!-- ...existing code... -->
-<div class="cover">
+</div>
+<!-- ...existing code... -->
+ <div class="cover">
     <div class="cover-content">
     <div class="cover-label">watch live</div>
     <div class="cover-bg">
         <button class="cover-btn">watch our live sermon here</button>
     </div>
 </div>
-
 </div>
+<div class="cover second-cover">
+    <div class="cover-content">
+        <div class="cover-bg second-bg">
 
+            <div class="second-welcome">
+                UPCOMING EVENT
+            </div>
+            <div class="second-bg">
+    <div class="pushup-overlay">
+        <img src="img/IMG-20240525-WA0035.jpg" alt="Pushup Service" class="pushup-img">
+        <div class="pushup-text">prophetic push-up service</div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+<body>
 <script>
     const images = document.querySelectorAll('.carousel-img');
     const prevBtn = document.querySelector('.carousel-btn.prev');
@@ -157,41 +181,45 @@
     images[current].classList.add('active');
     startAutoSlide();
 </script>
-<script>
-    const toggle = document.getElementById('navbar-toggle');
-const links = document.querySelector('.navbar-links');
-toggle.onclick = function() {
-    links.classList.toggle('active');
-    toggle.classList.toggle('active');
-};
 
-    // Responsive dropdown for mobile
-    document.querySelectorAll('.dropdown > a').forEach(item => {
-        item.addEventListener('click', function(e) {
-            if(window.innerWidth <= 768) {
-                e.preventDefault();
-                this.parentElement.classList.toggle('open');
-            }
-        });
+  
+  <script>
+    // Navbar background on scroll
+    window.addEventListener("scroll", function () {
+      const navbar = document.getElementById("navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
     });
 
-    const navbar = document.getElementById('main-navbar');
-window.addEventListener('scroll', function() {
-    if(window.scrollY > 80) { // Increased distance before bg appears
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-</script>
-<script>
-window.addEventListener("load", function() {
-    const loader = document.getElementById("loader");
-    loader.style.opacity = "0";
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 600); // matches CSS transition
-});
-</script>
-</body>
+    // Toggle mobile menu
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Dropdown toggle (works for both desktop & mobile)
+    document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        const parentLi = toggle.parentElement;
+
+        // close other dropdowns
+        document.querySelectorAll("nav ul li").forEach(li => {
+          if (li !== parentLi) li.classList.remove("show");
+        });
+
+        // toggle clicked one
+        parentLi.classList.toggle("show");
+      });
+    });
+  </script>
+    </body>
 </html>
+
+
+
