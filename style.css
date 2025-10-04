@@ -1,3 +1,4 @@
+
 * {
       margin: 0;
       padding: 0;
@@ -25,11 +26,27 @@
     animation: spin 1.2s linear infinite;
     margin-bottom: 30px;
 }
+ .container {
+      padding: 20px;
+      text-align: center;
+      color: white;
+      font-size: clamp(2.5rem, 4vw, 3rem);
+      font-family: sans-serif;
+      font-weight: 700;
+      line-height: 2.4;
+      max-width: 90%;
+      word-wrap: break-word;
+    }
 
-@keyframes spin {
-    0% { transform: rotate(0deg);}
-    100% { transform: rotate(360deg);}
-}
+    .container span {
+        position: relative;
+        top: -30rem;
+      display: inline-block;
+      opacity: 0;
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+
 
 .loader-text {
     font-size: 2.2rem;
@@ -48,7 +65,7 @@
 /* ...existing code... */
     body {
       font-family: Arial, sans-serif;
-      min-height: 2000px; /* just to allow scrolling */
+      min-height: 2700px; /* just to allow scrolling */
       background: #000;
     }
 nav {
@@ -451,58 +468,6 @@ nav {
     100% { transform: translateY(-80px) scale(1.2); opacity: 0.5; }
 }
 
-.carousel-welcome {
-    position: absolute;
-    top: 50rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    text-align: center;
-    font-family: 'Dancing Script', 'Pacifico', cursive, Arial, sans-serif;
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: #ffffff;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    z-index: 10;
-    opacity: 0;
-    filter: blur(14px);
-    animation: welcomeFloatUp 2.5s cubic-bezier(.77,0,.18,1) alternate infinite;
-}
-
-@keyframes welcomeFloatUp {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(60px) scale(0.7) rotate(360deg);
-        filter: blur(18px);
-    }
-    40% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-10px) scale(1.1) rotate(0deg);
-        filter: blur(4px);
-    }
-    70% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0px) scale(1.05) rotate(0deg);
-        filter: blur(0px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0px) scale(1) rotate(0deg);
-        filter: blur(0px);
-        color: #ffffff;
-        font-weight: 900;
-    }
-}
-
-/* Responsive for mobile */
-@media (max-width: 600px) {
-    .carousel-welcome {
-        font-size: 2.2rem;
-        top: 50%;
-        width: 98%;
-    }
-}
 
 /* ...existing code... */
 .extra-buttons {
