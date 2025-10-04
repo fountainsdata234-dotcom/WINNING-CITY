@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Winning City official site</title>
+  <title>Winning City official Site</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
   <style>
   </style>
   <link rel="stylesheet" href="style.css">
 </head>
 
-</head>
 <body>
 
     <div id="loader">
@@ -76,17 +77,18 @@
         <div class="bubble bubble4"></div>
         <div class="bubble bubble5"></div>
     </div>
-    <div class="carousel-welcome">
-        WELCOME TO WINNING LIFE BIBLE CHURCH
-    </div>
+    
     <button class="carousel-btn prev">&#10094;</button>
     <div class="carousel-images">
+      
         <video src="video/VID-20251003-WA0015.mp4" class="carousel-img" muted autoplay infinite style=" filter: blur(10px);"></video>
         <video src="video/VID-20251003-WA0016.mp4" class="carousel-img" muted autoplay style=" filter: blur(10px);"></video>
         <video src="video/VID-20251003-WA0017.mp4" class="carousel-img" muted autoplay style=" filter: blur(10px);"></video>
     </div>
     <button class="carousel-btn next">&#10095;</button>
     <div class="extra-buttons">
+        <div class="container" id="welcomeText"></div>
+
       <a href="#"><button class="extra-btn">Prayer Request</button></a>
       <a href="#"><button class="extra-btn">Give Online</button></a>
     </div>
@@ -233,9 +235,36 @@ window.addEventListener("load", function() {
     }, 600); // matches CSS transition
 });
 </script>
+  <script>
+    const message = "WELCOME TO WINNING LIFE Bible ChURCH..... GOD OUR RIGHTEOUSNESS";
+    const container = document.getElementById("welcomeText");
+
+    const words = message.split(" ");
+    words.forEach(word => {
+      const span = document.createElement("span");
+      span.textContent = word;
+      container.appendChild(span);
+    });
+
+    gsap.fromTo(".container span", {
+      y: () => gsap.utils.random(-300, -150),
+      opacity: 0,
+      scale: 0.5,
+      rotation: () => gsap.utils.random(-45, 45)
+    }, {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      rotation: 0,
+      duration: 1.2,
+      stagger: 0.2,
+      ease: "bounce.out"
+    });
+  </script>
+
+
     </body>
 </html>
-
 
 
 
