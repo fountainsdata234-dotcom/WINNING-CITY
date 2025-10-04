@@ -13,12 +13,16 @@
 
 <body>
 
-    <div id="loader">
-    <div class="loader-spinner"></div>
-    <div class="loader-text">winning city
-      <br><img src="img/Retouch_20241018_160117602.png" alt="" style="width: 50px; height: 50px; border-radius: 50px; position: absolute; 
-      position: absolute; left: 30%;">
-    </div>
+    <!-- Loader -->
+  <div id="loader">
+    <div class="bouncing-text">WINNING CITY</div>
+  </div>
+
+  <!-- Main Page -->
+  <div id="main-content">
+    Page loaded successfully!
+  </div>
+
 </div>
   <nav id="navbar">
     <div class="logo">WINNING <span>CITY</span></div>
@@ -227,14 +231,15 @@
     });
   </script>
   <script>
-window.addEventListener("load", function() {
-    const loader = document.getElementById("loader");
-    loader.style.opacity = "0";
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 600); // matches CSS transition
-});
-</script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      const content = document.getElementById("main-content");
+
+      loader.style.display = "none";
+      content.style.display = "flex";
+    });
+  </script>
+
   <script>
     const message = "WELCOME TO WINNING LIFE Bible ChURCH..... GOD OUR RIGHTEOUSNESS";
     const container = document.getElementById("welcomeText");
@@ -246,20 +251,23 @@ window.addEventListener("load", function() {
       container.appendChild(span);
     });
 
-    gsap.fromTo(".container span", {
-      y: () => gsap.utils.random(-300, -150),
-      opacity: 0,
-      scale: 0.5,
-      rotation: () => gsap.utils.random(-45, 45)
-    }, {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      rotation: 0,
-      duration: 1.2,
-      stagger: 0.2,
-      ease: "bounce.out"
-    });
+      window.onload = () => {
+      gsap.fromTo(".container span", {
+        y: () => gsap.utils.random(-300, -150),
+        opacity: 0,
+        scale: 0.5,
+        rotation: () => gsap.utils.random(-45, 45)
+      }, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "bounce.out"
+      });
+    };
+
   </script>
 
 
