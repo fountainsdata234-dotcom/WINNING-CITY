@@ -66,7 +66,8 @@
     body {
       font-family: Arial, sans-serif;
       min-height: 2700px; /* just to allow scrolling */
-      background: #000;
+     background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
+
     }
 nav {
       position: fixed;
@@ -523,6 +524,8 @@ nav {
     padding: 2rem 0;
     box-sizing: border-box;
     position: relative;
+z-index: 1;
+
 }
 
 .cover-content {
@@ -808,3 +811,109 @@ nav {
         width: 98%;
     }
 }
+
+
+   
+
+
+.sermon-box {
+  width: 80%;
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 25px 30px;
+  text-align: center;
+  background: linear-gradient(135deg, #a0cfff, #e0f2ff);
+  color: #003366;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  opacity: 0; /* hidden before animation */
+  filter: blur(10px);
+  transform: rotateY(90deg);
+  transition: all 0.3s ease;
+}
+
+
+    .sermon-box a {
+      color: #0044cc;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .sermon-box a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .sermon-box {
+        font-size: 1rem;
+        padding: 20px;
+      }
+    }
+
+    /* Floating animation container */
+.floating-squares {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Squares (you can increase size if you want) */
+.floating-squares span {
+  position: absolute;
+  top: 10rem;
+  width: 18px; /* increased size */
+  height: 18px;
+  background: rgba(0, 150, 255, 0.35);
+  border-radius: 4px;
+  background: rgba(0, 150, 255, 0.45);
+box-shadow: 0 0 10px rgba(0, 180, 255, 0.6);
+
+  opacity: 0;
+  animation: flutter 9s infinite ease-in-out;
+}
+
+/* Butterfly-like random flutter motion */
+@keyframes flutter {
+  0% {
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  25% {
+    transform: translate(40px, -70px) scale(0.9) rotate(90deg);
+  }
+  50% {
+    transform: translate(-60px, -160px) scale(1.1) rotate(180deg);
+  }
+  75% {
+    transform: translate(30px, -260px) scale(0.95) rotate(270deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-30px, -360px) scale(0.8) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Randomize each square for natural motion */
+.floating-squares span:nth-child(1) { left: 10%; top: 95%; animation-delay: 0s; animation-duration: 8s; }
+.floating-squares span:nth-child(2) { left: 25%; top: 90%; animation-delay: 1s; animation-duration: 9s; }
+.floating-squares span:nth-child(3) { left: 40%; top: 85%; animation-delay: 2s; animation-duration: 10s; }
+.floating-squares span:nth-child(4) { left: 55%; top: 92%; animation-delay: 1.5s; animation-duration: 7.5s; }
+.floating-squares span:nth-child(5) { left: 70%; top: 97%; animation-delay: 2.5s; animation-duration: 8.5s; }
+.floating-squares span:nth-child(6) { left: 80%; top: 94%; animation-delay: 3s; animation-duration: 9.5s; }
+.floating-squares span:nth-child(7) { left: 50%; top: 93%; animation-delay: 0.5s; animation-duration: 9s; }
+.floating-squares span:nth-child(8) { left: 35%; top: 98%; animation-delay: 1.8s; animation-duration: 10.5s; }
+
+/* Make smaller for mobile */
+@media (max-width: 480px) {
+  .floating-squares span {
+    width: 12px;
+    height: 12px;
+  }
+}
+
