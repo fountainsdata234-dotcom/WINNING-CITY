@@ -1021,5 +1021,41 @@ font-family: "Tangerine", cursive;
       }
     }
 
- 
+ .footer-links {
+  margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .nav-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .nav-link:hover {
+    color: #00bcd4;
+  }
+
+  /* Scrollbar styling (optional) */
+  .footer-links::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .footer-links::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+  }
+
 
