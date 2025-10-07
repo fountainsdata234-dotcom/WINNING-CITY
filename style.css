@@ -668,7 +668,7 @@ z-index: 1;
 .second-bg {
     width: 100%;
     height: 100%;
-    background: url('img/your-second-image.jpg') center center/cover no-repeat;
+    background: url('img/alex-gallegos-qrjlTYoSriE-unsplash\ \(1\).jpg') center center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -916,4 +916,110 @@ box-shadow: 0 0 10px rgba(0, 180, 255, 0.6);
     height: 12px;
   }
 }
+footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  outline: 2px solid red;
+  background: #000000;
+  color: #fff;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.6s ease, padding 0.6s ease;
+}
+ footer.show {
+  height: 300px;
+  padding: 20px 0;
+}
+
+.footer-content {
+  opacity: 0;
+  transform: scaleY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+footer.show .footer-content {
+  opacity: 1;
+  transform: scaleY(1);
+}
+footer p.p1{
+   position: relative;
+   top: 15rem;  
+   justify-content: center;
+    align-items: center;
+    display: flex;
+     text-align: center;
+}
+footer p.p2{
+   position: relative;
+   top: 0rem; 
+font-family: "Tangerine", cursive;
+   justify-content: center;
+    align-items: center;
+    display: flex;
+     text-align: center;
+}
+
+ .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+       text-align: center;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      width: 40px;
+      background-color: white;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .icon {
+      font-size: 24px;
+      color: #000000;
+      transition: color 0.3s ease;
+    }
+
+    .button:hover {
+      width: 100px;
+      border-radius: 30px;
+    }
+
+    .wrapper .button:nth-child(1):hover .icon {
+      color: #316FF6;
+    }
+
+    .wrapper .button:nth-child(2):hover .icon {
+      color: #1da1f2;
+    }
+
+    .wrapper .button:nth-child(3):hover .icon {
+      color: #e1306c;
+    }
+
+    .wrapper .button:nth-child(4):hover .icon {
+      color: #ff0000;
+    }
+
+    @media (max-width: 480px) {
+      .button {
+        width: 50px;
+        height: 50px;
+      }
+      .button:hover {
+        width: 80px;
+      }
+  .icon {
+        font-size: 18px;
+      }
+    }
+
+ 
 
