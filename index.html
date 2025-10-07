@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Winning City official Site</title>
    <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <style>
@@ -186,9 +190,65 @@
   <div class="sermon-box">
   Click <a href="#">Here</a> To Watch Rev. SG. Erochukwu Sermons
 </div>
+<footer id="footer">
+  <div class="footer-content">
+    <p class="p2">Follow us on</p>
+    <p class="p1"> &copy; 2025 Winning Life Bible Church. All right reseverd</p>
+  </div>
+  <img src="img/Retouch_20241018_160117602.png" alt="Church Logo" class="logo1" style=" 
+  width: 10%;       /* Scales with screen size */
+  height: auto;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+">
+
+   <div class="wrapper">
+    <div class="button">
+       <div class="icon">
+         <i class="fa fa-facebook"></i> 
+       </div>
+    </div>
+
+<div class="button">
+    <div class="icon">
+      <i class="fa fa-twitter"></i> 
+</div>
+</div>
+
+<div class="button">
+<div class="icon">
+  <i class="fa fa-instagram"></i> 
+</div>
+</div>
+
+<div class="button">
+<div class="icon">
+  <i class="fa fa-youtube"></i> 
+
+</div>
+</div>
+
+</div>
+</footer>
 
  
 <body>
+  <script>
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.body.offsetHeight;
+
+    if (scrollTop + windowHeight >= docHeight - 5) {
+      document.getElementById("footer").classList.add("show");
+    } else {
+      document.getElementById("footer").classList.remove("show");
+    }
+  });
+</script>
+
   <script>
   // === DKing Scroll Script ===
   const dkingScrollBtn = document.getElementById("dkingScrollBtn");
