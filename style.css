@@ -116,7 +116,7 @@ nav {
 
     nav ul li a {
       text-decoration: none;
-      color: #fff;
+     color: #00b7ff;
       font-size: 16px;
       transition: color 0.3s;
       display: block;
@@ -1056,6 +1056,7 @@ font-family: "Tangerine", cursive;
     background: #555;
     border-radius: 10px;
   }
+
 
 
 
