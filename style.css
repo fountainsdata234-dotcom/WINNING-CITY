@@ -920,7 +920,6 @@ footer{
   position: fixed;
   bottom: 0;
   width: 100%;
-  outline: 2px solid red;
   background: #000000;
   color: #fff;
   overflow: hidden;
@@ -1057,5 +1056,6 @@ font-family: "Tangerine", cursive;
     background: #555;
     border-radius: 10px;
   }
+
 
 
