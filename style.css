@@ -65,7 +65,7 @@
 /* ...existing code... */
     body {
       font-family: Arial, sans-serif;
-      min-height: 2700px; /* just to allow scrolling */
+      min-height: 2300px; /* just to allow scrolling */
      background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
 
     }
@@ -90,7 +90,7 @@ nav {
   
     nav .logo {
       color: #0077ff;
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 800;
       font-style: italic;
     }
@@ -116,7 +116,7 @@ nav {
 
     nav ul li a {
       text-decoration: none;
-     color: #00b7ff;
+      color: #00b7ff;
       font-size: 16px;
       transition: color 0.3s;
       display: block;
@@ -957,6 +957,7 @@ font-family: "Tangerine", cursive;
     align-items: center;
     display: flex;
      text-align: center;
+     font-size: 20px;
 }
 
  .wrapper {
@@ -1056,7 +1057,5 @@ font-family: "Tangerine", cursive;
     background: #555;
     border-radius: 10px;
   }
-
-
 
 
