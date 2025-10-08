@@ -43,7 +43,7 @@
 /* ...existing code... */
     body {
       font-family: Arial, sans-serif;
-      min-height: 2700px; /* just to allow scrolling */
+      min-height: 2150px; /* just to allow scrolling */
      background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
 
     }
@@ -68,7 +68,7 @@ nav {
   
     nav .logo {
       color: #0077ff;
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 800;
       font-style: italic;
     }
@@ -94,7 +94,7 @@ nav {
 
     nav ul li a {
       text-decoration: none;
-  color: #00b7ff;
+     color: #00b7ff;
       font-size: 16px;
       transition: color 0.3s;
       display: block;
@@ -288,6 +288,44 @@ nav {
         font-size: 15px;
     }
     }
+
+.sermon-box {
+  width: 80%;
+  
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 25px 30px;
+  text-align: center;
+  background: linear-gradient(135deg, #a0cfff, #e0f2ff);
+  color: #003366;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  opacity: 0; /* hidden before animation */
+  filter: blur(10px);
+  transform: rotateY(90deg);
+  transition: all 0.3s ease;
+}
+
+
+    .sermon-box a {
+      color: #ff0000;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .sermon-box a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .sermon-box {
+        font-size: 1rem;
+        padding: 20px;
+      }
+    }
+
     footer{
   position: fixed;
   bottom: 0;
@@ -329,6 +367,7 @@ font-family: "Tangerine", cursive;
     align-items: center;
     display: flex;
      text-align: center;
+     font-size: 20px;
 }
 
  .wrapper {
@@ -428,7 +467,5 @@ font-family: "Tangerine", cursive;
     background: #555;
     border-radius: 10px;
   }
-
-
 
 
