@@ -65,7 +65,7 @@
 /* ...existing code... */
     body {
       font-family: Arial, sans-serif;
-      min-height: 2300px; /* just to allow scrolling */
+      min-height: 2420px; /* just to allow scrolling */
      background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
 
     }
@@ -1059,3 +1059,54 @@ font-family: "Tangerine", cursive;
   }
 
 
+.support-box {
+  max-width: 350px;
+  height: 10em;
+  padding: 20px;
+  background-image: url(img/beautiful-cloudscape.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  margin: -60px auto;
+  position: relative; /* Change or add position as needed */
+}
+
+.support-box h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 700;
+}
+
+.support-btn {
+  background-color: #2d89ef;
+  margin-top: 40px;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.support-btn:hover {
+  background-color: #1e5cb3;
+  transform: scale(1.05);
+}
+
+@media (max-width: 500px) {
+  .support-box {
+    max-width: 90%;
+    padding: 15px;
+  }
+ .support-btn {
+    width: 100%;
+  }
+}
+
+
+/* ...existing code... */
