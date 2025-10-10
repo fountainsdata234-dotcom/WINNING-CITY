@@ -89,7 +89,7 @@ nav {
     }
   
     nav .logo {
-      color: #0077ff;
+      color: #ffffff;
       font-size: 20px;
       font-weight: 800;
       font-style: italic;
@@ -333,73 +333,6 @@ nav {
     }
 }
 
-.line {
-    position: absolute;
-    width: 1px;
-    height: 80px;
-    border-radius: 2px;
-    opacity: 0.7;
-    animation: floatLine 6s infinite linear;
-}
-/* ...existing code... */
-
-/* Default sizes for desktop/laptop */
-
-
-/* Bubbles default */
-.bubble1 { width: 30px; height: 30px; }
-.bubble2 { width: 20px; height: 20px; }
-.bubble3 { width: 25px; height: 25px; }
-.bubble4 { width: 15px; height: 15px; }
-.bubble5 { width: 18px; height: 18px; }
-
-/* Smaller lines and bubbles for mobile */
-@media (max-width: 500px) {
-    .line {
-        width: 2px;
-        height: 40px;
-    }
-    .line1 { width: 16px; height: 16px; }
-    .line2 { width: 12px; height: 12px; }
-    .line3 { width: 14px; height: 14px; }
-    .line4 { width: 10px; height: 10px; }
-    .line5 { width: 12px; height: 12px; }
-}
-
-.line1 {
-    background: linear-gradient(180deg, #ff0000, #ffd700);
-    left: 10%; top: 80%;
-    animation-duration: 7s;
-    animation-delay: 0s;
-}
-
-.line2 {
-    background: linear-gradient(180deg, #00ffea, #007bff);
-    left: 80%; top: 10%;
-    animation-duration: 5s;
-    animation-delay: 1s;
-}
-
-.line3 {
-    background: linear-gradient(180deg, #ffd700, #ff0000);
-    left: 50%; top: 90%;
-    animation-duration: 6s;
-    animation-delay: 2s;
-}
-
-.line4 {
-    background: linear-gradient(180deg, #00ff00, #007bff);
-    left: 20%; top: 20%;
-    animation-duration: 8s;
-    animation-delay: 1.5s;
-}
-
-.line5 {
-    background: linear-gradient(180deg, #007bff, #00ffea);
-    left: 70%; top: 70%;
-    animation-duration: 6.5s;
-    animation-delay: 0.5s;
-}
 
 @keyframes floatLine {
     0% { transform: translateY(0) scaleY(1); opacity: 0.7; }
