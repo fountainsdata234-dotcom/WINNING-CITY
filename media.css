@@ -1,0 +1,294 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+ .container {
+      padding: 20px;
+      text-align: center;
+      color: white;
+      font-size: clamp(2.5rem, 4vw, 3rem);
+      font-family: sans-serif;
+      font-weight: 700;
+      line-height: 2.4;
+      max-width: 90%;
+      word-wrap: break-word;
+    }
+
+    .container span {
+        position: relative;
+        top: -3rem;
+      display: inline-block;
+      opacity: 0;
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+
+
+ #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('img/1749187969350.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .bouncing-text {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: white;
+      animation: bounce 0.6s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-20px); }
+    }
+
+    /* Main content hidden until loaded */
+    #main-content {
+      display: none;
+      height: 100vh;
+      background: #111;
+      color: white;
+      display: flex;
+    justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+    }
+
+/* ...existing code... */
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 2420px; /* just to allow scrolling */
+     background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
+
+    }
+nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      transition: 0.3s;
+      z-index: 1000;
+      background: transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+    }
+  
+    nav .logo {
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 800;
+      font-style: italic;
+    }
+    nav .logo span{
+        color: red;
+    }
+    @media (max-width: 768px){
+        nav .logo span{
+            position: absolute;
+            top: 80%;
+            left: 20%;
+        }
+    } 
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #00b7ff;
+      font-size: 16px;
+      transition: color 0.3s;
+      display: block;
+      padding: 8px 0;
+    }
+ nav ul li a.active{
+    color: red;
+ }
+    nav ul li a:hover {
+      color: #ff9800;
+    }
+
+    /* Dropdown */
+    nav ul li .dropdown {
+      display: none;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.9);
+      margin-top: 5px;
+    }
+
+    nav ul li .dropdown a {
+      padding: 10px;
+      color: #fff;
+      display: block;
+    }
+
+    nav ul li .dropdown a:hover {
+      background: #ff9800;
+      color: #000;
+    }
+
+    nav ul li.show .dropdown {
+      display: flex;
+    }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #003cff;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        width: 230px;
+        display: none;
+        padding: 10px;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav ul li {
+        width: 100%;
+      }
+
+      nav ul li .dropdown {
+        position: static;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+      }
+
+      nav ul li.show .dropdown {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  .tv-container {
+      width: 100%;
+      height: 80vh;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tv-screen {
+      width: 90%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+ #videoPlayer {
+      width: 100%;
+      height: 100%;
+      display: none;
+      object-fit: cover;
+    }
+
+    #placeholderImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-selector {
+      padding: 20px;
+      text-align: center;
+    }
+    .video-selector ul {
+  max-height: 200px; /* Limit the height */
+  overflow-y: auto;  /* Add vertical scroll */
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  width: 60%;
+  z-index: 10;
+}
+    
+
+   select {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+
+    .extra-section {
+      padding: 30px;
+      text-align: center;
+    }
+select {
+  overflow-y: auto;
+ height: 50%;
+ padding: 20px 20px;
+  font-size: 16px;
+}
+.dropdown-options {
+  max-height: 200px;
+  overflow-y: auto;
+}
+@media (max-width: 600px) {
+  select {
+    font-size: 14px;
+  }
+}
+
+select#videoSelect {
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+/* Style dropdown to make sure options scroll */
+select#videoSelect option {
+  white-space: normal;
+}
