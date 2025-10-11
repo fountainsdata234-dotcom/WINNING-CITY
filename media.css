@@ -205,99 +205,233 @@ nav {
         display: flex;
       }
     }
-  .tv-container {
+   .tv-container {
       width: 100%;
-      height: 80vh;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      max-width: 100%;
     }
 
     .tv-screen {
-      width: 90%;
-      height: 100%;
+      width: 100%;
+      height: 90vh;
+      background: #000;
+      border-radius: 0;
       position: relative;
       overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-   .tv-container {
-  width: 100%;
-  height: 80vh; /* height of the TV area */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.tv-image {
-  width: 100%;
-  height: 100%;
-  opacity: 50%;
-  object-fit: fill; /* or try contain if cover cuts too much */
+      box-shadow: 0 0 20px #00ccff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+  
 }
 
 
-
- #videoPlayer {
+    .tv-screen img, .tv-screen iframe {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      border: 1px solid #474747;
+      border-radius: 0px;
+display: block;
+    }
+
+    .tv-screen iframe {
       display: none;
-      object-fit: cover;
     }
 
-    #placeholderImage {
+    .video-select {
+      margin-top: 20px;
+      margin-left: 25%;
+      width: 50%;
+
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 0;
+      background: #222;
+      color: #fff;
+      border: none;
+      outline: none;
+    }
+
+    .extra-content {
+      margin-top: 40px;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .video-selector {
+      background: #ffffff;
       padding: 20px;
-      text-align: center;
+      border-radius: 10px;
     }
-    .video-selector ul {
-  max-height: 200px; /* Limit the height */
-  overflow-y: auto;  /* Add vertical scroll */
-  background-color: white;
-  border: 1px solid #ccc;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  width: 60%;
-  z-index: 10;
-}
-    
 
-   select {
-  max-height: 50px;
-  overflow-y: auto;
-}
+    @media (max-width: 1024px) {
+      .tv-screen {
+        height: 90vh;
+      }
+   }
 
+    @media (max-width: 768px) {
+      .tv-screen {
+        height: 90vh;
+      }
 
-    .extra-section {
-      padding: 30px;
-      text-align: center;
+      .video-select {
+        font-size: 16px;
+      }
     }
-select {
-  overflow-y: auto;
- height: 50%;
- padding: 10px 20px;
-  font-size: 16px;
+
+    @media (max-width: 500px) {
+      .tv-screen {
+        height: 80vh;
+      }
+
+      .video-select {
+        font-size: 15px;
+      }
+    }
+.tv-screen img{
+position: absolute;
+top: 0;
+left: 0;  
+width: 100%;
+height: 100%;
+object-fit: fill;
+z-index: 1;
+opacity: 5;
+
 }
-.dropdown-options {
-  max-height: 50px;
-  overflow-y: auto;
-}
-@media (max-width: 600px) {
-  select {
+
+/* 🌍 UNIVERSAL RESPONSIVENESS — All Devices */
+
+/* Extra Small Phones (≤360px) */
+@media (max-width: 360px) {
+  nav {
+    padding: 10px 15px;
+  }
+  nav .logo {
+    font-size: 16px;
+  }
+  nav ul li a {
+    font-size: 14px;
+  }
+  .container {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    padding: 10px;
+  }
+  .tv-screen {
+    height: 70vh;
+  }
+  .video-select {
+    width: 80%;
+    margin-left: 10%;
     font-size: 14px;
   }
 }
 
-/* Style dropdown to make sure options scroll */
-select#videoSelect option {
-  white-space: normal;
+/* Small Phones (≤480px) */
+@media (max-width: 480px) {
+  .container {
+    font-size: 2rem;
+    padding: 15px;
+  }
+  .tv-screen {
+    height: 75vh;
+  }
+  .video-select {
+    width: 90%;
+    margin-left: 5%;
+    font-size: 15px;
+  }
+  nav ul {
+    width: 100%;
+  }
+}
+
+/* Tablets (481px–768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  nav {
+    padding: 15px 25px;
+  }
+  .container {
+    font-size: 2.4rem;
+    line-height: 2;
+  }
+  .tv-screen {
+    height: 80vh;
+  }
+  .video-select {
+    width: 70%;
+    margin-left: 15%;
+    font-size: 16px;
+  }
+}
+
+/* Small Laptops (769px–1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    padding: 15px 40px;
+  }
+  .container {
+    max-width: 85%;
+    font-size: 2.6rem;
+  }
+  .tv-screen {
+    height: 85vh;
+  }
+  .video-select {
+    width: 60%;
+    margin-left: 20%;
+    font-size: 17px;
+  }
+}
+
+/* Desktops (1025px–1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .container {
+    max-width: 80%;
+    font-size: 2.8rem;
+  }
+  .tv-screen {
+    height: 90vh;
+  }
+  .video-select {
+    width: 50%;
+    margin-left: 25%;
+  }
+}
+
+/* Large Screens (≥1367px) */
+@media (min-width: 1367px) {
+  body {
+    font-size: 18px;
+  }
+  .container {
+    max-width: 70%;
+    font-size: 3rem;
+  }
+  .tv-screen {
+    height: 90vh;
+  }
+  .video-select {
+    width: 40%;
+    margin-left: 30%;
+  }
+}
+
+/* Ultrawide Displays (≥1800px) */
+@media (min-width: 1800px) {
+  body {
+    font-size: 20px;
+  }
+  .container {
+    max-width: 60%;
+  }
+  nav {
+    padding: 25px 80px;
+  }
+  .tv-screen {
+    height: 95vh;
+  }
+  .video-select {
+    width: 35%;
+    margin-left: 32.5%;
+  }
 }
