@@ -7,7 +7,7 @@
       padding: 20px;
       text-align: center;
       color: white;
-      font-size: 1.8rem;
+      font-size: 1.2rem;
        font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
       line-height: 2.4;
@@ -1043,3 +1043,143 @@ font-family: "Tangerine", cursive;
 
 
 /* ...existing code... */
+@media (max-width: 768px) {
+  .container {
+    font-size: 1rem;
+    line-height: 2;
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .container span {
+    top: -6rem;
+    margin-right: 5px;
+  }
+
+  #loader {
+    background-size: cover;
+  }
+
+  .bouncing-text {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    max-width: 98%;
+    padding: 10px;
+  }
+
+  .container span {
+    top: -4rem;
+    margin-right: 3px;
+ }
+
+  .bouncing-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* 🌍 UNIVERSAL RESPONSIVENESS (all screens & devices) */
+
+/* Small Phones (≤ 360px) */
+@media (max-width: 360px) {
+  html, body {
+    font-size: 14px;
+  }
+  nav ul {
+    width: 100%;
+  }
+  .carousel-btn {
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .cover-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+  .cover-label {
+    font-size: 0.8rem;
+    right: -20px;
+  }
+  .sermon-box {
+    font-size: 0.9rem;
+  }
+  footer p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Tablets (min-width: 769px) and (max-width: 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    padding: 20px 40px;
+  }
+  .carousel {
+    height: 80vh;
+  }
+  .cover-content {
+    width: 80%;
+  }
+  .second-cover .cover-content {
+    width: 80%;
+  }
+  .sermon-box {
+    width: 85%;
+    font-size: 1.1rem;
+  }
+}
+
+/* Small Laptops (min-width: 1025px) and (max-width: 1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .carousel {
+    height: 90vh;
+  }
+  .cover-content {
+    width: 65%;
+  }
+  .second-cover .cover-content {
+    width: 65%;
+  }
+  .container {
+    font-size: 1.1rem;
+  }
+}
+
+/* Large Screens (≥ 1367px) */
+@media (min-width: 1367px) {
+  body {
+    font-size: 18px;
+  }
+  .container {
+    max-width: 70%;
+  }
+  .carousel {
+    height: 100vh;
+  }
+  .cover-content {
+    width: 60%;
+  }
+  .second-cover .cover-content {
+    width: 60%;
+  }
+  footer {
+    height: 350px;
+  }
+}
+
+/* Ultrawide Displays (≥ 1800px) */
+@media (min-width: 1800px) {
+  body {
+    font-size: 20px;
+  }
+  .container {
+    max-width: 60%;
+  }
+  .carousel img {
+    object-fit: contain;
+  }
+}
