@@ -43,7 +43,7 @@
 /* ...existing code... */
     body {
       font-family: Arial, sans-serif;
-      min-height: 2150px; /* just to allow scrolling */
+      min-height: 2650px; /* just to allow scrolling */
      background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
 
     }
@@ -467,5 +467,6 @@ font-family: "Tangerine", cursive;
     background: #555;
     border-radius: 10px;
   }
+
 
 
