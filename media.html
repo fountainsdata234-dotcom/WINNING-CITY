@@ -61,11 +61,6 @@
 
 <body>
 
-    <!-- Loader -->
-  <div id="loader">
-    <div class="bouncing-text">WINNING CITY <br><center><img src="img/Retouch_20241018_160117602.png" alt="" width="70px"
-      height="70px"></center></div>
-  </div>
 
 
 
@@ -79,7 +74,7 @@
       <span></span>
     </div>
     <ul id="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="index.html" class="">Home</a></li>
       <li>
         <a href="" class="dropdown-toggle">About ▾</a>
         <div class="dropdown">
@@ -88,7 +83,7 @@
         </div>
       </li>
       <li>
-        <a href="about.html" class="">Media </a>
+        <a href="about.html" class="active">Media </a>
       </li>
       <li>
         <a href="#" class="dropdown-toggle">Event Calender ▾</a>
@@ -107,64 +102,47 @@
     </ul>
   </nav>
   
-   <div class="tv-container">
-    <div class="tv-screen">
-       <img src="img/wow.jpg" alt="Winning City TV" class="tv-image">
-
-      <video id="videoPlayer" controls>
-        <source id="videoSource" src="" type="video/mp4">
-        Your browser does not support HTML5 video.
-      </video>
+    <div class="tv-container">
+    <div class="tv-screen" id="tvScreen">
+      <img id="placeholder" src="img/wow.jpg" alt="TV Image" />
+      <iframe id="videoFrame" allowfullscreen></iframe>
     </div>
-  </div>
 
-  <div class="video-selector">
-    <select onchange="playVideo(this)">
-      <option disabled selected>Select a Message</option>
-      <option value="video/VID-20251003-WA0015.mp4">Sunday Service - Oct 5</option>
-      <option value="video2.mp4">Youth Revival</option>
-      <option value="video3.mp4">Praise Night</option>
-        <option value="video1.mp4">Sunday Service - Oct 5</option>
-      <option value="video2.mp4">Youth Revival</option>
-      <option value="video3.mp4">Praise Night</option>
-        <option value="video1.mp4">Sunday Service - Oct 5</option>
-      <option value="video2.mp4">Youth Revival</option>
-      <option value="video3.mp4">Praise Night</option>
-        <option value="video1.mp4">Sunday Service - Oct 5</option>
-      <option value="video2.mp4">Youth Revival</option>
-      <option value="video3.mp4">Praise Night</option>
-      <option value="video3.mp4">Praise Night</option>
-        <option value="video1.mp4">Sunday Service - Oct 5</option>
-      <option value="video2.mp4">Youth Revival</option>
-      <option value="video3.mp4">Praise Night</option>
-      <option value="video3.mp4">Praise Night</option>
-        <option value="video1.mp4">Sunday Service - Oct 5</option>
-      <option value="video2.mp4">Youth Revival</option>
-      <option value="video3.mp4">Praise Night</option>
-      <option value="video3.mp4">Praise Night</option>
-        <option value="video1.mp4">Sunday Service - Oct 5</option>
-      <option value="video2.mp4">Youth Revival</option>
-      <option value="video3.mp4">Praise Night</option>
+    <select class="video-select" id="videoSelect" onchange="playVideo()">
+      <option value="">-- Select a Message --</option>
+      <option value="https://www.youtube.com/embed/5qap5aO4i9A">Sunday Service</option>
+      <option value="https://www.youtube.com/embed/tgbNymZ7vqY">Youth Revival</option>
+      <option value="https://www.youtube.com/embed/ScMzIvxBSi4">Praise Night</option>
+      <option value="https://www.youtube.com/embed/OQSNhk5ICTI">Testimony Session</option>
+      <option value="https://www.youtube.com/embed/YE7VzlLtp-4">Building Project Update</option>
     </select>
   </div>
 
-  <div class="extra-section">
-    <h2>More Features Coming Soon...</h2>
+  <div class="extra-content">
+    <h2>WAHALA DEY OOOO 😫😫😫🥱🥱🥱😪😪😪</h2>
+    <p>make una help me abeg 😭😭😭🥵🥵🥵</p>
   </div>
 
   <script>
-    function playVideo(select) {
-      const player = document.getElementById("videoPlayer");
-      const source = document.getElementById("videoSource");
-      const placeholder = document.getElementById("placeholderImage");
+    function playVideo() {
+      const select = document.getElementById('videoSelect');
+      const videoURL = select.value;
+      const placeholder = document.getElementById('placeholder');
+      const videoFrame = document.getElementById('videoFrame');
 
-      source.src = select.value;
-      player.load();
-      placeholder.style.display = "none";
-      player.style.display = "block";
-      player.play();
-    }
+      if (videoURL) {
+        placeholder.style.display = 'none';
+        videoFrame.src = videoURL + "?autoplay=1&rel=0";
+        videoFrame.style.display = 'block';
+      } else {
+        videoFrame.src = "";
+        videoFrame.style.display = 'none';
+        placeholder.style.display = 'block';
+      }
+ }
   </script>
+
+
   
   <script>
     // Navbar background on scroll
