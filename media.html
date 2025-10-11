@@ -49,8 +49,8 @@
   /* Mobile-friendly scaling */
   @media (max-width: 600px) {
     .dking-scroll-btn {
-      bottom: 20px;
-      right: 20px;
+      bottom: 20%;
+      right: 30px;
       padding: 12px;
       font-size: 18px;
     }
@@ -208,6 +208,131 @@
     </div>
   </div>
 </div>
+
+<div class="carousel-container">
+  <div class="carousel">
+    <div class="slide"><img src="img/conquer-top.jpg" alt="Slide 1"></div>
+    <div class="slide"><img src="img/rear-view-excited-fans-having-fun-music-festival-taking-pictures-stage-with-their-smart-phones-copy-space.jpg" alt="Slide 2"></div>
+    <div class="slide"><img src="img/beautiful-cloudscape.jpg" alt="Slide 3"></div>
+    <div class="slide"><img src="img/alex-gallegos-qrjlTYoSriE-unsplash (1).jpg" alt="Slide 4"></div>
+  </div>
+  <button class="nav prev">&#10094;</button>
+  <button class="nav next">&#10095;</button>
+</div>
+<footer id="footer">
+  <div class="footer-content">
+    <p class="p2">Follow us on</p>
+    <p class="p1"> &copy; 2025 Winning Life Bible Church. All right reseverd</p>
+  
+  </div>
+  <img src="img/Retouch_20241018_160117602.png" alt="Church Logo" class="logo1" style=" 
+  width: 10%;       /* Scales with screen size */
+  height: auto;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+">
+
+   <div class="wrapper">
+    <div class="button">
+       <div class="icon">
+         <i class="fa fa-facebook"></i> 
+       </div>
+    </div>
+
+<div class="button">
+    <div class="icon">
+      <i class="fa fa-twitter"></i> 
+</div>
+</div>
+
+<div class="button">
+<div class="icon">
+  <i class="fa fa-instagram"></i> 
+</div>
+</div>
+
+<div class="button">
+<div class="icon">
+  <i class="fa fa-youtube"></i> 
+
+</div>
+</div>
+
+</div>
+ <div class="footer-links">
+    <div class="nav-group">
+      <a href="#" class="nav-link">About Us</a>
+      <a href="#" class="nav-link">Media</a>
+      <a href="#" class="nav-link">Building Project</a>
+      <a href="#" class="nav-link">Testimony</a>
+    </div>
+    <div class="nav-group">
+      <a href="#" class="nav-link">Gallery</a>
+      <a href="#" class="nav-link">Gallery</a>
+      <a href="#" class="nav-link">Gallery</a>
+      <a href="#" class="nav-link">Gallery</a>
+    </div>
+  </div>
+
+</footer>
+ <script>
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.body.offsetHeight;
+
+    if (scrollTop + windowHeight >= docHeight - 5) {
+      document.getElementById("footer").classList.add("show");
+    } else {
+      document.getElementById("footer").classList.remove("show");
+    }
+  });
+</script>
+
+<script>
+  window.onload = () => {
+    const carousel = document.querySelector('.carousel');
+    const slides = document.querySelectorAll('.slide');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    let index = 0;
+
+    function showSlide(i) {
+      if (i < 0) index = slides.length - 1;
+      else if (i >= slides.length) index = 0;
+      else index = i;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    prev.addEventListener('click', () => {
+      showSlide(index - 1);
+      resetAutoSlide();
+    });
+
+    next.addEventListener('click', () => {
+      showSlide(index + 1);
+      resetAutoSlide();
+    });
+
+    function autoSlide() {
+      index++;
+      showSlide(index);
+    }
+let slideInterval = setInterval(autoSlide, 4000); // change slide every 4 seconds
+
+    function resetAutoSlide() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(autoSlide, 4000);
+    }
+
+    showSlide(index);
+  };
+</script>
+
+
+
 
 
   <script>
