@@ -43,7 +43,7 @@
 /* ...existing code... */
     body {
       font-family: Arial, sans-serif;
-      min-height: 2500px; /* just to allow scrolling */
+      min-height: 2750px; /* just to allow scrolling */
      background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
 
     }
@@ -469,5 +469,145 @@ font-family: "Tangerine", cursive;
   }
 
 
+/* 🌍 UNIVERSAL RESPONSIVENESS (All Screens & Devices) */
 
+/* Extra Small Devices (≤360px) */
+@media (max-width: 360px) {
+  nav {
+    padding: 10px 15px;
+  }
+  nav .logo {
+    font-size: 16px;
+  }
+  nav ul li a {
+    font-size: 14px;
+  }
+  .header-container h1 {
+    font-size: 22px;
+  }
+  .header-container h2 {
+    font-size: 16px;
+  }
+  .sermon-box {
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+  .button {
+    width: 45px;
+    height: 45px;
+  }
+  footer p {
+    font-size: 13px;
+  }
+}
 
+/* Small Phones (≤480px) */
+@media (max-width: 480px) {
+  nav ul {
+    width: 100%;
+  }
+  .cover-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  .about-section p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .sermon-box {
+    width: 90%;
+    margin: 50px auto;
+  }
+  footer.show {
+    height: auto;
+  }
+  .footer-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Tablets (481px–768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  nav {
+    padding: 15px 25px;
+  }
+  .header-container h1 {
+    font-size: 26px;
+  }
+  .header-container h2 {
+    font-size: 18px;
+  }
+  .about-section .container {
+    padding: 25px;
+  }
+  .sermon-box {
+    width: 85%;
+    font-size: 1.1rem;
+  }
+  footer p.p2 {
+    font-size: 17px;
+  }
+}
+
+/* Laptops (769px–1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    padding: 15px 40px;
+  }
+  .container {
+    max-width: 85%;
+  }
+  .sermon-box {
+    width: 70%;
+    font-size: 1.2rem;
+  }
+  footer.show {
+    height: 280px;
+  }
+}
+
+/* Large Screens (1025px–1366px) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .container {
+    max-width: 80%;
+  }
+  .sermon-box {
+    width: 65%;
+  }
+  .header-container h1 {
+    font-size: 30px;
+  }
+}
+
+/* Extra Large Screens (≥1367px) */
+@media (min-width: 1367px) {
+  body {
+    font-size: 18px;
+  }
+  .container {
+    max-width: 70%;
+  }
+  .sermon-box {
+    width: 60%;
+  }
+  footer.show {
+    height: 320px;
+  }
+}
+
+/* Ultrawide Displays (≥1800px) */
+@media (min-width: 1800px) {
+  body {
+    font-size: 20px;
+  }
+  .container {
+    max-width: 60%;
+  }
+  nav {
+    padding: 25px 80px;
+  }
+  .sermon-box {
+    width: 55%;
+  }
+}
