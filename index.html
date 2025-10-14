@@ -231,7 +231,17 @@
  
 <body>
   <script>
-  window.addEventListener("scroll",()=>{const scrollTop=window.scrollY;const windowHeight=window.innerHeight;const docHeight=document.body.offsetHeight;if(scrollTop+windowHeight>=docHeight-5){document.getElementById("footer").classList.add("show")}else{document.getElementById("footer").classList.remove("show")}})
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.body.offsetHeight;
+
+    if (scrollTop + windowHeight >= docHeight - 5) {
+      document.getElementById("footer").classList.add("show");
+    } else {
+      document.getElementById("footer").classList.remove("show");
+    }
+  });
 </script>
 
   <script>
@@ -272,3 +282,6 @@ prevBtn.onclick=()=>{stopAutoSlide();prevImage();startAutoSlide()};nextBtn.oncli
 
     </body>
 </html>
+
+
+
