@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    min-height: 1000px;
+    min-height: 1500px;
     background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
 }
 nav {
@@ -461,3 +461,4 @@ footer p.p2 {
     margin-top: -10px;
   }
 }
+
