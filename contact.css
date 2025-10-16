@@ -127,65 +127,82 @@ nav ul li.show .dropdown {
     }
 }
 
-/* Contact Section */
+/* Contact Form Styles */
 .contact-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  padding: 60px 20px;
+  background: #f5f7fa;
 }
 
-/* Form Container */
-.form-container {
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+.contact-form {
+  background: #fff;
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
-  color: white;
+  transition: all 0.3s ease;
 }
 
-.form-container h2 {
+.contact-form h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 1.8rem;
 }
 
-/* Inputs & Textarea */
-.form-container input,
-.form-container select,
-.form-container textarea {
+.form-group {
+  margin-bottom: 15px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 5px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
   outline: none;
-  font-size: 16px;
+  transition: border-color 0.3s;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 100px;
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: #0078ff;
 }
 
-/* Submit Button */
-#send-button {
+.contact-form button {
   width: 100%;
-  padding: 12px;
-  background: #00b894;
+  padding: 14px;
+  background: #0078ff;
   color: white;
-  font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s, transform 0.2s;
 }
 
-#send-button:hover {
-  background: #019875;
+.contact-form button:hover {
+  background: #005fcc;
+  transform: scale(1.02);
 }
+
+/* Sent state */
+.contact-form button.sent {
+  background: #28a745 !important;
+}
+
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 25px 20px;
+  }
+}
+
 
 .whatsapp-section {
   max-width: 600px;
