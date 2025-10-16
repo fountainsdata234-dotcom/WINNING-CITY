@@ -109,24 +109,38 @@
       </li>
     </ul>
   </nav>
-  <!-- Contact Form -->
+  
+<!-- Contact Form Section -->
 <section class="contact-section">
-  <div class="form-container">
-    <h2>Contact Us</h2>
-    <form id="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="number" name="phone" placeholder="Your Phone (+234...)" required />
-      
-      <select name="country" id="country" required>
-        <option value="">Select Your Country</option>
+  <form id="contactForm" class="contact-form">
+    <h2>Contact Me</h2>
+
+    <div class="form-group">
+      <input type="text" id="name" name="name" placeholder="Your Name" required />
+    </div>
+
+    <!-- Country Selector -->
+    <div class="form-group">
+      <select id="country" name="country" required>
+        <option value="">Select Country</option>
       </select>
+    </div>
 
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" placeholder="Your Message" required></textarea>
+    <!-- Phone with country code auto-fill -->
+    <div class="form-group">
+      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
+    </div>
 
-      <button type="submit" id="send-button">Send Message</button>
-    </form>
-  </div>
+    <div class="form-group">
+      <input type="email" id="email" name="email" placeholder="Email Address" required />
+    </div>
+
+    <div class="form-group">
+      <textarea id="message" name="message" rows="5" placeholder="Your Message..." required></textarea>
+    </div>
+
+    <button type="submit" id="sendBtn">Send Message</button>
+  </form>
 </section>
 
 
@@ -203,70 +217,91 @@
   </div>
 
 </footer>
-<!-- EmailJS SDK -->
-<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+
+<!-- Add before closing </body> tag -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  // Initialize EmailJS with your Public Key
-  emailjs.init("N0OVpzkxjlapWCfqX"); // Replace with your public key
-</script>
+  // Initialize EmailJS
+  (function() {
+    emailjs.init("N0OVpzkxjlapWCfqX"); // Replace with your EmailJS Public Key
+  })();
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contact-form");
-    const sendBtn = document.getElementById("send-button");
-    const countrySelect = document.getElementById("country");
+  // List of countries and codes
+  const countries = {
+    "Nigeria": "+234",
+    "Ghana": "+233",
+    "United States": "+1",
+    "United Kingdom": "+44",
+    "Canada": "+1",
+    "South Africa": "+27",
+    "Kenya": "+254",
+    "India": "+91",
+    "Australia": "+61",
+    "Germany": "+49",
+    "France": "+33",
+    "Brazil": "+55",
+    "China": "+86",
+    "Japan": "+81",
+    "Italy": "+39",
+    "Spain": "+34",
+    "Netherlands": "+31",
+    "Mexico": "+52",
+    "Turkey": "+90",
+    "Saudi Arabia": "+966",
+    "United Arab Emirates": "+971",
+    "Russia": "+7",
+    "Egypt": "+20",
+    "South Korea": "+82",
+    "Argentina": "+54"
+    // You can add all countries if you want — this is a clean common list
+  };
 
-    // Fill countries
-    const countries = [ "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia","Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
-  "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
-  "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Chad",
-  "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus",
-  "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
-  "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji",
-  "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
-  "Guatemala", "Guinea", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia",
-  "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya",
-  "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya",
-  "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives",
-  "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro",
-  "Morocco", "Mozambique", "Myanmar", "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua","Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau",
-  "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
-  "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
-  "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Saudi Arabia", "Senegal", "Serbia",
-  "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia",
-  "South Africa", "South Korea", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
-  "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago",
-  "Tunisia", "Turkey", "Turkmenistan", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
-  "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-];
-    countries.forEach(country => {
-      const option = document.createElement("option");
-      option.value = country;
-      option.textContent = country;
-      countrySelect.appendChild(option);
-    });
-
-    // EmailJS submission
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      sendBtn.disabled = true;
-      sendBtn.textContent = "Sending...";
-
-     emailjs.sendForm('service_tq1g3kk', 'template_puimljm', form, 'N0OVpzkxjlapWCfqX')
-  .then(() => {
-    sendBtn.textContent = "Sent ✔";
-    setTimeout(() => {
-      sendBtn.textContent = "Send Message";
-    }, 3000);
-    form.reset();
-  })
-  .catch((error) => {
-    console.error('Failed to send:', error);
-    sendBtn.textContent = "Failed ✖";
+  // Populate dropdown
+  const countrySelect = document.getElementById("country");
+  Object.keys(countries).forEach(country => {
+    const option = document.createElement("option");
+    option.value = country;
+    option.textContent = country;
+    countrySelect.appendChild(option);
   });
 
-    });
+  // Update phone field when country changes
+  const phoneInput = document.getElementById("phone");
+  countrySelect.addEventListener("change", () => {
+    const code = countries[countrySelect.value];
+    if (code) {
+      if (!phoneInput.value.startsWith(code)) {
+        phoneInput.value = code + " ";
+      }
+    }
+  });
+
+  // Handle form submission
+  const form = document.getElementById("contactForm");
+  const sendBtn = document.getElementById("sendBtn");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    sendBtn.textContent = "Sending...";
+    sendBtn.disabled = true;
+
+    emailjs.sendForm("service_tq1g3kk", "template_puimljm", this)
+      .then(() => {
+        sendBtn.textContent = "Sent ✓";
+        sendBtn.classList.add("sent");
+
+        setTimeout(() => {
+          sendBtn.textContent = "Send Message";
+          sendBtn.classList.remove("sent");
+          sendBtn.disabled = false;
+          form.reset();
+        }, 3000);
+      }, (error) => {
+        alert("Failed to send message. Please try again later.");
+        console.error(error);
+        sendBtn.textContent = "Send Message";
+        sendBtn.disabled = false;
+      });
   });
 </script>
 
