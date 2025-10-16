@@ -223,7 +223,7 @@
 <script>
   // Initialize EmailJS
   (function() {
-    emailjs.init("ImhS2zRtxFlMEXxLk"); // Replace with your EmailJS Public Key
+    emailjs.init("2IHvOPPpHwSo1WPwk"); // Replace with your EmailJS Public Key
   })();
 
   // List of countries and codes
@@ -285,7 +285,7 @@
     sendBtn.textContent = "Sending...";
     sendBtn.disabled = true;
 
-    emailjs.sendForm("fountainsdata.", "fountains_temp", this)
+    emailjs.sendForm("service_wckfiao", "template_0pgj0dj", this)
       .then(() => {
         sendBtn.textContent = "Sent ✓";
         sendBtn.classList.add("sent");
@@ -298,7 +298,6 @@
         }, 3000);
       }, (error) => {
         alert("Failed to send message. Please try again later.");
-        console.error(error);
         console.error(error);
         sendBtn.textContent = "Send Message";
         sendBtn.disabled = false;
@@ -380,6 +379,7 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
