@@ -7,6 +7,8 @@
    <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -106,41 +108,42 @@
       </li>
     </ul>
   </nav>
-    <div class="contact-section">
-    <div class="contact-container">
-      <form id="contact-form" class="contact-form">
-        <h2>Contact Us</h2>
+     <div class="contact-container">
+    <form id="contact-form" class="contact-form">
+      <h2>Contact Us</h2>
+      <input type="text" name="user_name" placeholder="Your Name" required />
+      <input type="email" name="user_email" placeholder="Your Email" required />
+      <input type="text" name="user_phone" placeholder="+234..." required />
+      
+      <select id="country" name="country" required>
+  <option value="">Select your country</option>
+</select>
 
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="number" name="phone" placeholder="+234 Your Number" required>
-
-        <input type="text" id="countryInput" name="country" placeholder="Type your country" autocomplete="off" />
-<div id="countrySuggestions" class="suggestions-box"></div>
 
 
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+    
+      <button id="submit-btn" type="submit">Send Message</button>
 
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_redirect" value="javascript:void(0);">
-
-        <button type="submit" id="submit-btn">Send Message</button>
-        <p id="form-status" class="success-message">Message Sent ✅</p>
-      </form>
-    </div>
-
-    <div class="whatsapp-section">
-      <div class="whatsapp-box">
-        <span class="whatsapp-number">‪+2348029772375‬</span>
-        <a href="https://wa.me/2348029772375" target="_blank" class="whatsapp-link">Message Us</a>
-      </div>
-      <div class="whatsapp-box">
-        <span class="whatsapp-number">‪+2349039054705‬</span>
-        <a href="https://wa.me/2349039054705" target="_blank" class="whatsapp-link">Message Us</a>
-      </div>
-    </div>
+      <p id="status-msg"></p>
+    </form>
   </div>
+
+
+<div class="whatsapp-section">
+  <div class="whatsapp-contact">
+    <span>‪+2348029772375‬</span>
+    <a href="https://wa.me/2348029772375" target="_blank" class="wa-btn">Message Us</a>
+  </div>
+  <div class="whatsapp-contact">
+    <span>‪+2349039054705‬</span>
+    <a href="https://wa.me/2349039054705" target="_blank" class="wa-btn">Message Us</a>
+  </div>
+</div>
+
+
+
+
 
 <footer id="footer">
   <div class="footer-content">
@@ -201,83 +204,74 @@
 
 </footer>
 <script>
-  // List of countries for autocomplete
-const countries = [
-  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
-  "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
-  "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus",
-  "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
-  "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
-  "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada",
-  "Cape Verde", "Central African Republic", "Chad", "Chile", "China",
-  "Colombia", "Comoros", "Congo (Brazzaville)", "Congo (Kinshasa)", "Costa Rica",
-  "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark",
-  "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
-  "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia",
-  "Fiji", "Finland", "France", "Gabon", "Gambia",
-  "Georgia", "Germany", "Ghana", "Greece", "Grenada",
-  "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti",
-  "Honduras", "Hungary", "Iceland", "India", "Indonesia",
-  "Iran", "Iraq", "Ireland", "Israel", "Italy",
-  "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya",
-  "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-];
+  const countries = [
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia",
+  "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
+  "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
+  "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Chad",
+  "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus",
+  "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
+  "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji",
+  "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
+  "Guatemala", "Guinea", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia",
+  "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya",
+  "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya",
+  "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives",
+  "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro",
+  "Morocco", "Mozambique", "Myanmar", "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua",
+  "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau",
+  "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+  "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
+  "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Saudi Arabia", "Senegal", "Serbia",
+  "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia",
+  "South Africa", "South Korea", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+  "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago",
+  "Tunisia", "Turkey", "Turkmenistan", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
+  "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+    // You can expand this list as needed
+  ];
 
-// Autocomplete functionality for country input
-const countryInput = document.getElementById('countryInput'); // Adjust to your input's ID
-const suggestionsBox = document.getElementById('countrySuggestions'); // Container for suggestions
+  const countrySelect = document.getElementById("country");
 
-countryInput.addEventListener('input', () => {
-  const input = countryInput.value.toLowerCase();
-  suggestionsBox.innerHTML = '';
-  if (!input) return;
-  const filtered = countries.filter(c => c.toLowerCase().startsWith(input));
-  filtered.forEach(country => {
-    const div = document.createElement('div');
-    div.textContent = country;
-    div.classList.add('suggestion');
-    div.addEventListener('click', () => {
-      countryInput.value = country;
-      suggestionsBox.innerHTML = '';
-    });
-    suggestionsBox.appendChild(div);
+  countries.forEach(country => {
+    const option = document.createElement("option");
+    option.value = country;
+    option.textContent = country;
+    countrySelect.appendChild(option);
   });
+
+
+  const choices = new Choices('#country', {
+    searchEnabled: true,
+    itemSelectText: '',
+  });
+const form = document.getElementById("contact-form");
+const submitBtn = document.getElementById("submit-btn");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // Your EmailJS send code here...
+  emailjs.sendForm('your_service_id', 'your_template_id', this)
+    .then(() => {
+      // Show success message
+      submitBtn.textContent = "Message Sent ✅";
+      submitBtn.disabled = true;
+
+      // Reset form after 2 seconds
+      setTimeout(() => {
+        form.reset();
+        submitBtn.textContent = "Send Message";
+        submitBtn.disabled = false;
+      }, 2000);
+    })
+    .catch((error) => {
+      console.error("FAILED...", error);
+      submitBtn.textContent = "Failed ❌";
+    });
 });
 
-
-
 </script>
-<!-- Include EmailJS SDK -->
-<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
-<script>
-  emailjs.init("Ox0jjjc-W7SApaVP4"); // Your public key
-</script>
-
-<!-- Your Script to handle the form -->
-<script>
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const submitBtn = document.getElementById("submit-btn");
-    const statusMsg = document.getElementById("form-status");
-
-    submitBtn.disabled = true;
-    statusMsg.textContent = "Sending...";
-
-    emailjs.sendForm("service_tq1g3kk", "template_puimljm", this)
-      .then(() => {
-        statusMsg.textContent = "Sent ✅";
-        submitBtn.disabled = false;
-        this.reset();
-      })
-      .catch((error) => {
-        console.error("Failed:", error);
-        statusMsg.textContent = "Failed ❌ Please try again.";
-        submitBtn.disabled = false;
-      });
-  });
-</script>
-
 
   <script>
     // Navbar background on scroll
@@ -349,5 +343,6 @@ countryInput.addEventListener('input', () => {
  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+<script src="script.js"></script>
 </body>
 </html>
