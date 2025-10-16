@@ -7,7 +7,8 @@
    <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+ <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+
 
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
@@ -94,13 +95,13 @@
         </div>
       </li>
       <li>
-        <a href="about.html" class="active">Media </a>
+        <a href="about.html" >Media </a>
       </li>
       <li>
         <a href="event.html" class="dropdown-toggle">Event Calender ▾</a>
       </li>
       <li>
-        <a href="#" class="dropdown-toggle">Contact ▾</a>
+        <a href="#" class="dropdown-toggle, class=active">Contact ▾</a>
         <div class="dropdown">
           <a href="contact.html">Email Us</a>
           <a href="contact.html">Whatsapp</a>
@@ -108,26 +109,25 @@
       </li>
     </ul>
   </nav>
-     <div class="contact-container">
-    <form id="contact-form" class="contact-form">
-      <h2>Contact Us</h2>
+  <!-- Contact Form -->
+<section class="contact-section">
+  <div class="form-container">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
       <input type="text" name="user_name" placeholder="Your Name" required />
-      <input type="email" name="user_email" placeholder="Your Email" required />
-      <input type="number" name="user_phone" placeholder="+234..." required />
+      <input type="tel" name="user_phone" placeholder="Your Phone (+234...)" required />
       
-      <select id="country" name="country" required>
-  <option value="">Select your country</option>
-</select>
+      <select name="user_country" id="country" required>
+        <option value="">Select Your Country</option>
+      </select>
 
+      <input type="email" name="user_email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
 
-
-      <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
-    
-      <button id="submit-btn" type="submit">Send Message</button>
-
-      <p id="status-msg"></p>
+      <button type="submit" id="send-button">Send Message</button>
     </form>
   </div>
+</section>
 
 
 <div class="whatsapp-section">
@@ -203,10 +203,21 @@
   </div>
 
 </footer>
+<!-- EmailJS SDK -->
+<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
 <script>
-  const countries = [
-    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia",
-  "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
+  // Initialize EmailJS with your Public Key
+  emailjs.init("Ox0jjjc-W7SApaVP4"); // Replace with your public key
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const sendBtn = document.getElementById("send-button");
+    const countrySelect = document.getElementById("country");
+
+    // Fill countries
+    const countries = [ "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia","Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
   "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
   "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Chad",
   "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus",
@@ -218,8 +229,7 @@
   "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya",
   "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives",
   "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro",
-  "Morocco", "Mozambique", "Myanmar", "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua",
-  "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau",
+  "Morocco", "Mozambique", "Myanmar", "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua","Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau",
   "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
   "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
   "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Saudi Arabia", "Senegal", "Serbia",
@@ -228,50 +238,38 @@
   "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago",
   "Tunisia", "Turkey", "Turkmenistan", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
   "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-    // You can expand this list as needed
-  ];
-
-  const countrySelect = document.getElementById("country");
-
-  countries.forEach(country => {
-    const option = document.createElement("option");
-    option.value = country;
-    option.textContent = country;
-    countrySelect.appendChild(option);
-  });
-
-
-  const choices = new Choices('#country', {
-    searchEnabled: true,
-    itemSelectText: '',
-  });
-const form = document.getElementById("contact-form");
-const submitBtn = document.getElementById("submit-btn");
-
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  // Your EmailJS send code here...
-  emailjs.sendForm('your_service_id', 'your_template_id', this)
-    .then(() => {
-      // Show success message
-      submitBtn.textContent = "Message Sent ✅";
-      submitBtn.disabled = true;
-
-      // Reset form after 2 seconds
-      setTimeout(() => {
-        form.reset();
-        submitBtn.textContent = "Send Message";
-        submitBtn.disabled = false;
-      }, 2000);
-    })
-    .catch((error) => {
-      console.error("FAILED...", error);
-      submitBtn.textContent = "Failed ❌";
+];
+    countries.forEach(country => {
+      const option = document.createElement("option");
+      option.value = country;
+      option.textContent = country;
+      countrySelect.appendChild(option);
     });
-});
 
+    // EmailJS submission
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      sendBtn.disabled = true;
+      sendBtn.textContent = "Sending...";
+
+      emailjs.sendForm("service_tq1g3kk", "template_puimljm", this)
+        .then(() => {
+          sendBtn.textContent = "Sent ✔";
+          setTimeout(() => {
+            sendBtn.disabled = false;
+            sendBtn.textContent = "Send Message";
+            form.reset();
+          }, 3000);
+        }, () => {
+          sendBtn.disabled = false;
+          sendBtn.textContent = "Send Message";
+          alert("Message failed. Please try again.");
+        });
+    });
+  });
 </script>
+
 
   <script>
     // Navbar background on scroll
@@ -346,4 +344,3 @@ form.addEventListener("submit", function(e) {
 <script src="script.js"></script>
 </body>
 </html>
-
