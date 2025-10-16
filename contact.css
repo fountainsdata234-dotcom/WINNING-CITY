@@ -1,6 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    min-height: 1500px;
+    min-height: 2720px;
     background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
 }
 nav {
@@ -21,7 +27,7 @@ nav.scrolled {
     backdrop-filter: blur(5px);
 }
 nav .logo {
-    color: #07f;
+    color: #fff;
     font-size: 20px;
     font-weight: 800;
     font-style: italic;
@@ -122,124 +128,143 @@ nav ul li.show .dropdown {
 }
 
 .contact-section {
-  padding: 2rem;
-  font-family: 'Montserrat', sans-serif;
-  color: white;
+  padding: 50px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
 }
 
 .contact-container {
-  width: 100%;
-  max-width: 600px;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(5px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  padding: 2rem;
+  padding: 30px;
   border-radius: 12px;
-  background-image: url('img/beautiful-cloudscape.jpg'); /* Replace with your image */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 100px;
-}
-
-.contact-container form {
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 500px;
+  margin-bottom: 40px;
 }
 
-.contact-container input,
-.contact-container textarea {
+.contact-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #00ffff;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
   width: 100%;
   padding: 12px;
-  margin-bottom: 15px;
+  margin: 10px 0;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
   font-size: 1rem;
 }
-.contact-container button {
-  background: #00b894;
+
+.contact-form button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #00ffff;
   border: none;
-  padding: 12px 20px;
-  color: white;
+ border-radius: 8px;
+  font-size: 1rem;
   font-weight: bold;
-  border-radius: 6px;
+  color: #000;
   cursor: pointer;
-  transition: 0.3s;
-  align-self: center;
+  transition: background 0.3s;
 }
 
-.contact-container button:hover {
-    background: #019874;
+.contact-form button:hover {
+  background: #00dddd;
 }
 
-.whatsapp-container {
+.success-message {
+  color: limegreen;
+  text-align: center;
+  margin-top: 10px;
+  display: none;
+}
+
+.whatsapp-section {
   width: 100%;
   max-width: 600px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.whatsapp-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  padding: 15px 20px;
   border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 127, 0.2);
 }
 
-.phone {
-  font-size: 1rem;
+.whatsapp-number {
   font-weight: bold;
 }
 
 .whatsapp-link {
-  color: #25D366;
   text-decoration: none;
+  padding: 8px 14px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 6px;
   font-weight: bold;
-  transition: 0.3s;
+  transition: background 0.3s;
 }
 
 .whatsapp-link:hover {
-  text-shadow: 0 0 10px #25D366;
+  background: #1ebd5a;
 }
 
-@media (max-width: 768px) {
-  .whatsapp-container {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
+@media (min-width: 700px) {
+  .whatsapp-section {
+    flex-direction: row;
+    justify-content: center;
   }
-
-  .contact-container {
-    padding: 1.5rem;
-  }
- .contact-container button {
-    width: 100%;
+ .whatsapp-box {
+    width: 45%;
   }
 }
+
 
 
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: #000000a4;
+    background: #000;
     color: #fff;
-    backdrop-filter: blur(5px);
     overflow: hidden;
-    height: 280px;
-    left: 0;
+    height: 0;
     transition:
         height 0.6s ease,
         padding 0.6s ease;
 }
-
+footer.show {
+    height: 300px;
+    padding: 20px 0;
+}
+.footer-content {
+    opacity: 0;
+    transform: scaleY(0);
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
+}
+footer.show .footer-content {
+    opacity: 1;
+    transform: scaleY(1);
+}
 footer p.p1 {
     position: relative;
     top: 15rem;
@@ -461,4 +486,3 @@ footer p.p2 {
     margin-top: -10px;
   }
 }
-
