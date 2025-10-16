@@ -297,7 +297,8 @@
           form.reset();
         }, 3000);
       }, (error) => {
-        alert("Failed to send message. Please try again later.");
+  console.error("EmailJS error:", error);
+  alert("Failed to send message. Please try again later.");
         console.error(error);
         sendBtn.textContent = "Send Message";
         sendBtn.disabled = false;
@@ -379,3 +380,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
