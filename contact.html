@@ -285,7 +285,7 @@
     sendBtn.textContent = "Sending...";
     sendBtn.disabled = true;
 
-    emailjs.sendForm("fountainsdata.", "template_puimljm", this)
+    emailjs.sendForm("fountainsdata.", "fountains_temp", this)
       .then(() => {
         sendBtn.textContent = "Sent ✓";
         sendBtn.classList.add("sent");
@@ -380,6 +380,7 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
