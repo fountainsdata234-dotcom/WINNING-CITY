@@ -114,14 +114,14 @@
   <div class="form-container">
     <h2>Contact Us</h2>
     <form id="contact-form">
-      <input type="text" name="user_name" placeholder="Your Name" required />
-      <input type="tel" name="user_phone" placeholder="Your Phone (+234...)" required />
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="number" name="phone" placeholder="Your Phone (+234...)" required />
       
-      <select name="user_country" id="country" required>
+      <select name="country" id="country" required>
         <option value="">Select Your Country</option>
       </select>
 
-      <input type="email" name="user_email" placeholder="Your Email" required />
+      <input type="email" name="email" placeholder="Your Email" required />
       <textarea name="message" placeholder="Your Message" required></textarea>
 
       <button type="submit" id="send-button">Send Message</button>
@@ -207,7 +207,7 @@
 <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
 <script>
   // Initialize EmailJS with your Public Key
-  emailjs.init("Ox0jjjc-W7SApaVP4"); // Replace with your public key
+  emailjs.init("N0OVpzkxjlapWCfqX"); // Replace with your public key
 </script>
 
 <script>
@@ -253,19 +253,19 @@
       sendBtn.disabled = true;
       sendBtn.textContent = "Sending...";
 
-      emailjs.sendForm("service_tq1g3kk", "template_puimljm", this)
-        .then(() => {
-          sendBtn.textContent = "Sent ✔";
-          setTimeout(() => {
-            sendBtn.disabled = false;
-            sendBtn.textContent = "Send Message";
-            form.reset();
-          }, 3000);
-        }, () => {
-          sendBtn.disabled = false;
-          sendBtn.textContent = "Send Message";
-          alert("Message failed. Please try again.");
-        });
+     emailjs.sendForm('service_tq1g3kk', 'template_puimljm', form, 'N0OVpzkxjlapWCfqX')
+  .then(() => {
+    sendBtn.textContent = "Sent ✔";
+    setTimeout(() => {
+      sendBtn.textContent = "Send Message";
+    }, 3000);
+    form.reset();
+  })
+  .catch((error) => {
+    console.error('Failed to send:', error);
+    sendBtn.textContent = "Failed ✖";
+  });
+
     });
   });
 </script>
