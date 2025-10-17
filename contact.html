@@ -253,23 +253,33 @@
       option.textContent = `${country} (${code})`;
       countrySelect.appendChild(option);
     }
+</script>
+<!-- ✅ Include these before the script (preferably in your <head>) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 
-  // ===== INTERNATIONAL PHONE INPUT =====
+<!-- ✅ Then add this JS just before </body> -->
+<script>
+  // Initialize the smart phone input
   const phoneInputField = document.querySelector("#phone");
   const phoneInput = window.intlTelInput(phoneInputField, {
-    initialCountry: "ng", // default to Nigeria
+    initialCountry: "ng", // default country
     preferredCountries: ["ng", "us", "gb", "gh", "za"],
-    nationalMode: false,
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js", // for formatting and validation
+    nationalMode: false, // always show full international format
+    utilsScript:
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js", // for formatting and validation
   });
 
+  // Handle form submission with animated button
   const form = document.querySelector("#contactForm");
   const sendButton = document.querySelector("#sendButton");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const phoneNumber = phoneInput.getNumber();
+    e.preventDefault(); // stop default page reload
 
+    const phoneNumber = phoneInput.getNumber(); // get full phone with +code
+
+    // ✅ Check if the phone number matches the selected country
     if (!phoneInput.isValidNumber()) {
       alert("Please enter a valid phone number for your selected country.");
       return;
@@ -278,10 +288,11 @@
     sendButton.innerText = "Sending...";
     sendButton.disabled = true;
 
-    // send your form with fetch() or normal submit
+    // collect all form data
     const formData = new FormData(form);
-    formData.set("phone", phoneNumber); // replace plain number with full intl format
+    formData.set("phone", phoneNumber); // replace normal number with full intl version
 
+    // Send form data to FormSubmit (your email)
     fetch(form.action, {
       method: "POST",
       body: formData,
@@ -306,9 +317,7 @@
         sendButton.disabled = false;
       });
   });
-
-
-  </script>
+</script>
 
 
   <script>
