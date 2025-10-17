@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 
- <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
 
 
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
@@ -128,7 +127,7 @@
       <input
         type="hidden"
         name="_next"
-        value="https://fountainsdata234-dotcom.github.io/WINNING-CITY/"
+        value="https://fountainsdata234-dotcom.github.io/WINNING-CITY/index.html"
       />
 
       <input type="text" name="Name" placeholder="Your Full Name" required />
@@ -297,29 +296,32 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.set("phone", phoneNumber);
 
     fetch(form.action, {
-      method: "POST",
-      body: formData,
-      mode: "no-cors",
-    })
-      .then(() => {
-        // ✅ Success
-        sendButton.classList.remove("sending");
-        sendButton.classList.add("sent");
-        btnText.textContent = "Sent ✓";
+  method: "POST",
+  body: formData,
+  mode: "no-cors",
+})
+  .then(() => {
+    // Since no-cors hides the real response, simulate success animation
+    setTimeout(() => {
+      sendButton.classList.remove("sending");
+      sendButton.classList.add("sent");
+      btnText.textContent = "Sent ✓";
+      form.reset();
+    }, 1500); // small delay for realism
 
-        setTimeout(() => {
-          form.reset();
-          sendButton.classList.remove("sent");
-          btnText.textContent = "Send Message";
-          sendButton.disabled = false;
-        }, 3500);
-      })
-      .catch(() => {
-        alert("❌ Error sending message. Try again.");
-        sendButton.classList.remove("sending");
-        btnText.textContent = "Send Message";
-        sendButton.disabled = false;
-      });
+    setTimeout(() => {
+      sendButton.classList.remove("sent");
+      btnText.textContent = "Send Message";
+      sendButton.disabled = false;
+    }, 4000);
+  })
+  .catch(() => {
+    sendButton.classList.remove("sending");
+    alert("Error sending message. Please try again.");
+    btnText.textContent = "Send Message";
+    sendButton.disabled = false;
+  });
+
   });
 });
 </script>
