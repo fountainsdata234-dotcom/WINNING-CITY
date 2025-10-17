@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Winning City// contact us</title>
+  <title>Winning City Media</title>
    <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+
  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
 
 
@@ -120,10 +123,12 @@
       <select id="country" name="Country" required>
         <option value="">Select Country</option>
       </select>
-      <input type="tel" name="Phone" placeholder="Your Phone Number" required>
+      <input id="phone" name="phone" type="tel" placeholder="Enter your phone number" required>
+
       <input type="email" name="Email" placeholder="Your Email Address" required>
       <textarea name="Message" placeholder="Your Message" required></textarea>
-      <button type="submit" id="sendBtn">Send Message</button>
+     <button type="submit" id="sendButton">Send Message</button>
+
     </form>
   </div>
 </div>
@@ -249,50 +254,60 @@
       countrySelect.appendChild(option);
     }
 
-    // ===== FORM SUBMIT FUNCTION =====
-    const form = document.getElementById("contact-form");
-    const btn = document.getElementById("send-btn");
+  // ===== INTERNATIONAL PHONE INPUT =====
+  const phoneInputField = document.querySelector("#phone");
+  const phoneInput = window.intlTelInput(phoneInputField, {
+    initialCountry: "ng", // default to Nigeria
+    preferredCountries: ["ng", "us", "gb", "gh", "za"],
+    nationalMode: false,
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js", // for formatting and validation
+  });
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+  const form = document.querySelector("#contactForm");
+  const sendButton = document.querySelector("#sendButton");
 
-      btn.innerHTML = "Sending...";
-      btn.style.background = "#0288d1";
-      btn.disabled = true;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const phoneNumber = phoneInput.getNumber();
 
-      fetch("https://formsubmit.co/ajax/fountainsdata234@gmail.com", {  // replace with your email
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name.value,
-          country: form.country.value,
-          phone: form.phone.value,
-          email: form.email.value,
-          message: form.message.value,
-        }),
-      })
-      .then(res => res.ok ? res.json() : Promise.reject(res))
-      .then(() => {
-        btn.innerHTML = 'Sent <span class="tick">✔</span>';
-        btn.style.background = "#00e676";
+    if (!phoneInput.isValidNumber()) {
+      alert("Please enter a valid phone number for your selected country.");
+      return;
+    }
 
-        setTimeout(() => {
-          btn.innerHTML = "Send Message";
-          btn.style.background = "#4fc3f7";
-          btn.disabled = false;
+    sendButton.innerText = "Sending...";
+    sendButton.disabled = true;
+
+    // send your form with fetch() or normal submit
+    const formData = new FormData(form);
+    formData.set("phone", phoneNumber); // replace plain number with full intl format
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          sendButton.innerText = "Sent ✓";
           form.reset();
-        }, 3000);
+          setTimeout(() => {
+            sendButton.innerText = "Send Message";
+            sendButton.disabled = false;
+          }, 4000);
+        } else {
+          alert("Failed to send message.");
+          sendButton.innerText = "Send Message";
+          sendButton.disabled = false;
+        }
       })
       .catch(() => {
-        btn.innerHTML = "Failed! Try Again";
-        btn.style.background = "#e53935";
-        setTimeout(() => {
-          btn.innerHTML = "Send Message";
-          btn.style.background = "#4fc3f7";
-          btn.disabled = false;
-        }, 3000);
+        alert("Error sending message.");
+        sendButton.innerText = "Send Message";
+        sendButton.disabled = false;
       });
-    });
+  });
+
+
   </script>
 
 
@@ -369,5 +384,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
-
