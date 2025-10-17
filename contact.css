@@ -126,82 +126,113 @@ nav ul li.show .dropdown {
         display: flex;
     }
 }
-
-/* Contact Form Styles */
-.contact-section {
+/* Outer wrapper: centers the whole form */
+.contact-wrapper {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
-  background: #f5f7fa;
+  padding: 20px;
 }
 
-.contact-form {
-  background: #fff;
-  padding: 30px;
+/* Main form box */
+.contact-container {
+  width: 90%;
+  max-width: 450px;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
-  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  padding: 25px 30px;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.85); /* semi-transparent white */
+  backdrop-filter: blur(10px); /* glassy effect (optional) */
 }
 
-.contact-form h2 {
+/* If you're adding your own background image/color, just override this: */
+.contact-container {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/beautiful-cloudscape.jpg') center/cover;
+}
+
+/* Title */
+.contact-container h2 {
   text-align: center;
-  margin-bottom: 25px;
-  color: #333;
-  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #0077b6;
+  font-size: 1.6rem;
 }
 
-.form-group {
-  margin-bottom: 15px;
+/* Form fields */
+.contact-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
+.contact-container input,
+.contact-container select,
+.contact-container textarea,
+.contact-container button {
   width: 100%;
-  padding: 14px;
+  padding: 12px 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 16px;
   outline: none;
-  transition: border-color 0.3s;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-  border-color: #0078ff;
+.contact-container input:focus,
+.contact-container select:focus,
+.contact-container textarea:focus {
+  border-color: #0077b6;
+  box-shadow: 0 0 5px rgba(0,119,182,0.3);
 }
 
-.contact-form button {
-  width: 100%;
-  padding: 14px;
-  background: #0078ff;
-  color: white;
+/* Textarea */
+.contact-container textarea {
+  resize: none;
+  height: 100px;
+}
+
+/* Button styling */
+.contact-container button {
+  background: #0077b6;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  font-size: 17px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: background 0.3s ease, transform 0.1s ease;
 }
 
-.contact-form button:hover {
-  background: #005fcc;
+.contact-container button:hover {
+  background: #0096c7;
   transform: scale(1.02);
 }
 
-/* Sent state */
-.contact-form button.sent {
-  background: #28a745 !important;
+.contact-container button.sending {
+  background: #00b4d8;
 }
 
+.contact-container button.sent {
+  background: #28a745;
+}
+
+/* Mobile responsive */
 @media (max-width: 600px) {
-  .contact-form {
-    padding: 25px 20px;
+  .contact-container {
+    width: 95%;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .contact-container h2 {
+    font-size: 20px;
   }
 }
+
 
 
 .whatsapp-section {
