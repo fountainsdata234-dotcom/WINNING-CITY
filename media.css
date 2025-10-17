@@ -480,17 +480,17 @@ nav ul li.show .dropdown {
     inset: 0;
     background-size: cover;
     background-position: center;
-    opacity: 0.2;
+    opacity: 5;
     z-index: 0;
 }
 .audio1::before {
-    background-image: url(img/1749187969350.jpg);
+    background-image: url(img/beautiful-cloudscape.jpg);
 }
 .audio2::before {
-    background-image: url("img/alex-gallegos-qrjlTYoSriE-unsplash\ \(1\).jpg");
+    background-image: url(img/tyler-milligan-HOibeznfzTc-unsplash.jpg);
 }
 .audio3::before {
-    background-image: url(img/conquer-top.jpg);
+    background-image: url(img/josh-sorenson-H9pgj5zIFug-unsplash\ \(1\).jpg);
 }
 .audio-box audio {
     position: relative;
@@ -552,7 +552,7 @@ nav ul li.show .dropdown {
     margin-top: 20px;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
     padding: 40px 20px;
     background: linear-gradient(to bottom, #f0f4ff, #d9e2ff);
     box-shadow: inset 0 0 30px rgb(0 0 0 / 0.05);
@@ -989,4 +989,76 @@ footer p.p2 {
   .nav-link {
     margin-top: -10px;
   }
+}
+#clock-container {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 220px;
+  padding: 12px 16px;
+  background: #00ff6a;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  cursor: grab;
+  transition: box-shadow 0.2s ease;
+  z-index: 1000;
+}
+
+#clock-container:active {
+  cursor: grabbing;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+#clock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#digital-clock {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: #222;
+}
+
+#dropdown-arrow {
+  font-size: 1.2em;
+  cursor: pointer;
+  user-select: none;
+}
+
+#popup-info {
+  display: none;
+  margin-top: 10px;
+  font-size: 0.95em;
+  color: #444;
+}
+
+@media (max-width: 600px) {
+  #clock-container {
+    width: 180px;
+    padding: 10px 12px;
+  }
+
+  #digital-clock {
+    font-size: 1.4em;
+  }
+
+  #popup-info {
+    font-size: 0.85em;
+  }
+}
+ #countdown-message {
+  margin-top: 20px;
+  font-size: 1em;
+  font-weight: 500;
+  text-align: center;
+  padding: 10px 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  color: #333;
+  background: #00ffea;
+  transition: color 0.3s ease;
 }
