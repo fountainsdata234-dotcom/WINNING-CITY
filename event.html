@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winning City official Site</title>
+   <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+
+
+
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "c4086696-14a8-4a2f-9dcf-af157dd3378c",
+    });
+  });
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+  </style>
+  <style>
+  /* === DKing Scroll to Top Styles === */
+  .dking-scroll-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 170, 255, 0.2);
+    border: 2px solid #00aaff;
+    color: #00aaff;
+    padding: 15px;
+    border-radius: 40%;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+    animation: dkingGlow 2s infinite ease-in-out;
+    display: none; /* hidden by default */
+  }
+
+  .dking-scroll-btn:hover {
+    background: #00aaff;
+    color: white;
+    box-shadow: 0 0 25px #00aaff;
+    transform: scale(1.1);
+  }
+
+  @keyframes dkingGlow {
+    0% { box-shadow: 0 0 10px #00aaff; }
+    50% { box-shadow: 0 0 25px #00aaff; }
+    100% { box-shadow: 0 0 10px #00aaff; }
+  }
+
+  /* Mobile-friendly scaling */
+  @media (max-width: 600px) {
+    .dking-scroll-btn {
+      bottom: 20px;
+      right: 20px;
+      padding: 12px;
+      font-size: 18px;
+    }
+  }
+</style>
+  <link rel="stylesheet" href="event.css">
+</head>
+
+<body>
+
+
+</div>
+<div class="dking-scroll-btn" id="dkingScrollBtn">&#8679;</div>
+  <nav id="navbar">
+    <div class="logo">WINNING <span>CITY</span></div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="" class="dropdown-toggle">About ▾</a>
+        <div class="dropdown">
+          <a href="about.html">Who we are</a>
+          <a href="about.html">Our Vison And Mission</a>
+        </div>
+      </li>
+      <li>
+        <a href="media.html" class="">Media </a>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle active">Event Calender ▾</a>
+        <div class="dropdown">
+          <a href="event.html">This Week</a>
+          <a href="#">This Month</a>
+        </div>
+      </li>
+      <li>
+        <a href="contact.html" class="dropdown-toggle">Contact ▾</a>
+        <div class="dropdown">
+          <a href="contact.html">Email Us</a>
+          <a href="contact.html">Whatsapp</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+</head>
+<div id="calendar-container">
+  <div id="calendar"></div>
+</div>
+
+
+
+  <!-- Modal / Popup for event details -->
+  <div id="eventModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <div class="event-title" id="modalTitle"></div>
+      <div class="event-time" id="modalTime"></div>
+      <div class="event-description" id="modalDesc"></div>
+    </div>
+  </div>
+
+
+<div id="clock-container">
+  <div id="clock-header">
+    <span id="digital-clock">--:--:--</span>
+    <span id="dropdown-arrow">&#9662;</span>
+  </div>
+  <div id="popup-info">
+    <p>Live service begins at <strong>7:00 PM GMT</strong></p>
+  </div>
+</div>
+
+<script>
+// Live Clock
+function updateClock() {
+  const now = new Date();
+  document.getElementById('digital-clock').textContent = now.toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Toggle Dropdown
+document.getElementById('dropdown-arrow').addEventListener('click', () => {
+  const popup = document.getElementById('popup-info');
+  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+});
+
+// Drag & Touch Support
+const clock = document.getElementById('clock-container');
+let isDragging = false, offsetX = 0, offsetY = 0;
+
+const startDrag = (x, y) => {
+  isDragging = true;
+  offsetX = x - clock.offsetLeft;
+  offsetY = y - clock.offsetTop;
+};
+
+const moveDrag = (x, y) => {
+  if (isDragging) {
+    clock.style.left = `${x - offsetX}px`;
+    clock.style.top = `${y - offsetY}px`;
+  }
+};
+
+const stopDrag = () => {
+  isDragging = false;
+};
+
+// Mouse Events
+clock.addEventListener('mousedown', e => startDrag(e.clientX, e.clientY));
+document.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
+document.addEventListener('mouseup', stopDrag);
+
+// Touch Events
+clock.addEventListener('touchstart', e => {
+  const touch = e.touches[0];
+  startDrag(touch.clientX, touch.clientY);
+});
+document.addEventListener('touchmove', e => {
+  const touch = e.touches[0];
+  moveDrag(touch.clientX, touch.clientY);
+});
+ 
+
+document.addEventListener('touchend', stopDrag);
+</script>
+ <script>
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.body.offsetHeight;
+
+    if (scrollTop + windowHeight >= docHeight - 5) {
+      document.getElementById("footer").classList.add("show");
+    } else {
+      document.getElementById("footer").classList.remove("show");
+    }
+  });
+</script>
+
+
+<!-- FullCalendar JS -->
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: [ 
+        {
+          title: 'Sunday Service',
+          start: '2025-10-19',
+          description: 'Our weekly Sunday worship service'
+        }
+      ],
+      eventClick: function(info) {
+        alert(info.event.title + "\n" + info.event.extendedProps.description);
+      }
+    });
+    calendar.render();
+  });
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarEl = document.getElementById('calendar');
+
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        height: 'auto',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+           right: 'dayGridMonth,timeGridWeek,timeGridDay'
+
+        },
+        events: [
+          {
+            id: '1',
+            title: 'Sunday Service',
+            start: '2025-10-19T10:00:00',
+            description: 'Join us for worship service and praise.'
+          },
+          {
+            id: '2',
+            title: 'Youth Meeting',
+            start: '2025-10-21T17:00:00',
+            description: 'Youth fellowship and bible study night.'
+          },
+          {
+            id: '3',
+            title: 'Prayer Night',
+            start: '2025-10-25T19:00:00',
+            description: 'A night of worship and prayer for the congregation.'
+          },
+          {
+            id: '4',
+            title: 'Prayer Night',
+            start: '2025-10-01T19:00:00',
+            description: 'A night of worship and prayer for the congregation.'
+          },
+          {
+            id: '4',
+            title: 'fire Night',
+            start: '2025-11-01T19:00:00',
+            description: 'A night of worship and prayer for the congregation.'
+          }
+
+        ],
+        eventClick: function(info) {
+          // Populate modal with event details
+          document.getElementById('modalTitle').textContent = info.event.title;
+          const start = info.event.start;
+          const timeString = start.toLocaleString([], { 
+            year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+          });
+          document.getElementById('modalTime').textContent = timeString;
+          document.getElementById('modalDesc').textContent = info.event.extendedProps.description || 'No description provided.';
+          // Show modal
+       document.getElementById('eventModal').style.display = 'block';
+        }
+      });
+
+      calendar.render();
+    });
+
+    function closeModal() {
+      document.getElementById('eventModal').style.display = 'none';
+    }
+
+    // Close modal if clicked outside content
+    window.onclick = function(event) {
+      const modal = document.getElementById('eventModal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+   
+  </script>
+
+
+<script>
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.body.offsetHeight;
+
+    if (scrollTop + windowHeight >= docHeight - 5) {
+      document.getElementById("footer").classList.add("show");
+    } else {
+      document.getElementById("footer").classList.remove("show");
+    }
+  });
+</script>
+
+  <script>
+  // === DKing Scroll Script ===
+  const dkingScrollBtn=document.getElementById("dkingScrollBtn");window.addEventListener("scroll",()=>{if(window.scrollY>300){dkingScrollBtn.style.display="flex"}else{dkingScrollBtn.style.display="none"}});dkingScrollBtn.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})})
+</script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);gsap.fromTo(".sermon-box",{opacity:0,rotateY:90,filter:"blur(10px)"},{opacity:1,rotateY:0,filter:"blur(0px)",duration:0.1,ease:"power3.out",scrollTrigger:{trigger:".sermon-box",start:"top 80%",end:"bottom 20%",toggleActions:"play reverse play reverse",markers:!1}})
+</script>
+
+ <script>
+    // Navbar background on scroll
+    window.addEventListener("scroll",function(){const navbar=document.getElementById("navbar");if(window.scrollY>50){navbar.classList.add("scrolled")}else{navbar.classList.remove("scrolled")}});const menuToggle=document.getElementById("menu-toggle");const navLinks=document.getElementById("nav-links");menuToggle.addEventListener("click",()=>{navLinks.classList.toggle("active")});document.querySelectorAll(".dropdown-toggle").forEach(toggle=>{toggle.addEventListener("click",(e)=>{e.preventDefault();const parentLi=toggle.parentElement;document.querySelectorAll("nav ul li").forEach(li=>{if(li!==parentLi)li.classList.remove("show");});parentLi.classList.toggle("show")})})
+  </script>
+  <script>
+    window.addEventListener("load",()=>{const loader=document.getElementById("loader");const content=document.getElementById("main-content");loader.style.display="none";content.style.display="flex"})
+  </script>
+
+    </body>
+</html>
