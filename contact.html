@@ -6,9 +6,12 @@
   <title>Winning City // contact us</title>
    <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"></script>
 
 
 
@@ -122,7 +125,6 @@
       method="POST"
       target="hidden_iframe"
     >
-      <!-- Hidden configs -->
       <input type="hidden" name="_captcha" value="false" />
       <input
         type="hidden"
@@ -235,19 +237,15 @@
   </div>
 
 </footer>
-<!-- intl-tel-input JS -->
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("#contactForm");
   const sendButton = document.querySelector("#sendButton");
+  const btnText = sendButton.querySelector(".btn-text");
   const phoneInputField = document.querySelector("#phone");
   const countrySelect = document.querySelector("#country");
-  const btnText = sendButton.querySelector(".btn-text");
 
-  // ✅ Initialize phone input
+  // Initialize phone input
   const phoneInput = window.intlTelInput(phoneInputField, {
     initialCountry: "ng",
     preferredCountries: ["ng", "us", "gb", "gh", "za"],
@@ -256,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
   });
 
-  // ✅ Populate country dropdown
+  // Populate all countries
   setTimeout(() => {
     const countries = window.intlTelInputGlobals.getCountryData();
     countrySelect.innerHTML = '<option value="">Select Country</option>';
@@ -268,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }, 200);
 
-  // ✅ Sync dropdown ↔ phone input
+  // Sync dropdown ↔ phone input
   countrySelect.addEventListener("change", function () {
     if (this.value) phoneInput.setCountry(this.value);
   });
@@ -277,51 +275,49 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selected && selected.iso2) countrySelect.value = selected.iso2;
   });
 
-  // ✅ Handle form submission
+  // Handle form submission
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const phoneNumber = phoneInput.getNumber();
     if (!phoneInput.isValidNumber()) {
-      alert("⚠️ Please enter a valid phone number.");
+      alert("⚠️ Please enter a valid phone number for your selected country.");
       return;
     }
 
-    // 🎬 Button animation (sending)
-    sendButton.classList.add("sending");
+    // Button animation (Sending...)
     btnText.textContent = "Sending...";
     sendButton.disabled = true;
+    sendButton.style.backgroundColor = "#ff9d00";
 
     const formData = new FormData(form);
     formData.set("phone", phoneNumber);
 
     fetch(form.action, {
-  method: "POST",
-  body: formData,
-  mode: "no-cors",
-})
-  .then(() => {
-    // Since no-cors hides the real response, simulate success animation
-    setTimeout(() => {
-      sendButton.classList.remove("sending");
-      sendButton.classList.add("sent");
-      btnText.textContent = "Sent ✓";
-      form.reset();
-    }, 1500); // small delay for realism
+      method: "POST",
+      body: formData,
+      mode: "no-cors",
+    })
+      .then(() => {
+        // Simulate success animation
+        setTimeout(() => {
+          btnText.textContent = "Sent ✓";
+          sendButton.style.backgroundColor = "#2ecc71"; // green
+          form.reset();
+        }, 1500);
 
-    setTimeout(() => {
-      sendButton.classList.remove("sent");
-      btnText.textContent = "Send Message";
-      sendButton.disabled = false;
-    }, 4000);
-  })
-  .catch(() => {
-    sendButton.classList.remove("sending");
-    alert("Error sending message. Please try again.");
-    btnText.textContent = "Send Message";
-    sendButton.disabled = false;
-  });
-
+        setTimeout(() => {
+          btnText.textContent = "Send Message";
+          sendButton.style.backgroundColor = ""; // reset
+          sendButton.disabled = false;
+        }, 4000);
+      })
+      .catch(() => {
+        alert("❌ Error sending message. Please try again.");
+        btnText.textContent = "Send Message";
+        sendButton.disabled = false;
+        sendButton.style.backgroundColor = "";
+      });
   });
 });
 </script>
