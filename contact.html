@@ -109,43 +109,24 @@
       </li>
     </ul>
   </nav>
-  
-<!-- Contact Form Section -->
-<section class="contact-section">
-  <form id="contactForm" class="contact-form">
+<div class="contact-wrapper">
+  <div class="contact-container">
     <h2>Contact Me</h2>
+    <form id="contactForm" action="https://formsubmit.co/YOUR_EMAIL" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://fountainsdata234-dotcom.github.io/WINNING-CITY/">
 
-    <div class="form-group">
-      <input type="text" id="name" name="name" placeholder="Your Name" required />
-    </div>
-    <div class="form-group">
-      <input type="text" id="contact us" name="title" placeholder="title" required />
-    </div>
-
-    <!-- Country Selector -->
-    <div class="form-group">
-      <select id="country" name="country" required>
+      <input type="text" name="Name" placeholder="Your Full Name" required>
+      <select id="country" name="Country" required>
         <option value="">Select Country</option>
       </select>
-    </div>
-
-    <!-- Phone with country code auto-fill -->
-    <div class="form-group">
-      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
-    </div>
-
-    <div class="form-group">
-      <input type="email" id="email" name="email" placeholder="Email Address" required />
-    </div>
-
-    <div class="form-group">
-      <textarea id="message" name="message" rows="5" placeholder="Your Message..." required></textarea>
-    </div>
-
-    <button type="submit" id="sendBtn">Send Message</button>
-  </form>
-</section>
-
+      <input type="tel" name="Phone" placeholder="Your Phone Number" required>
+      <input type="email" name="Email" placeholder="Your Email Address" required>
+      <textarea name="Message" placeholder="Your Message" required></textarea>
+      <button type="submit" id="sendBtn">Send Message</button>
+    </form>
+  </div>
+</div>
 
 <div class="whatsapp-section">
   <div class="whatsapp-contact">
@@ -221,93 +202,98 @@
 
 </footer>
 
-<!-- Add before closing </body> tag -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  // Initialize EmailJS
-  (function() {
-    emailjs.init("2IHvOPPpHwSo1WPwk"); // Replace with your EmailJS Public Key
-  })();
+    // ===== COUNTRY LIST + CODE =====
+    const countries = {
+  "Afghanistan": "+93", "Albania": "+355", "Algeria": "+213", "Andorra": "+376", "Angola": "+244",
+  "Argentina": "+54", "Armenia": "+374", "Australia": "+61", "Austria": "+43", "Azerbaijan": "+994",
+  "Bahamas": "+1-242", "Bahrain": "+973", "Bangladesh": "+880", "Barbados": "+1-246", "Belarus": "+375",
+  "Belgium": "+32", "Belize": "+501", "Benin": "+229", "Bhutan": "+975", "Bolivia": "+591",
+  "Bosnia and Herzegovina": "+387", "Botswana": "+267", "Brazil": "+55", "Brunei": "+673", "Bulgaria": "+359",
+  "Burkina Faso": "+226", "Burundi": "+257", "Cambodia": "+855", "Cameroon": "+237", "Canada": "+1",
+  "Cape Verde": "+238", "Central African Republic": "+236", "Chad": "+235", "Chile": "+56", "China": "+86",
+  "Colombia": "+57", "Congo": "+242", "Costa Rica": "+506", "Croatia": "+385", "Cuba": "+53",
+  "Cyprus": "+357", "Czech Republic": "+420", "Denmark": "+45", "Dominican Republic": "+1-809", "Ecuador": "+593",
+  "Egypt": "+20", "El Salvador": "+503", "Equatorial Guinea": "+240", "Eritrea": "+291", "Estonia": "+372",
+  "Eswatini": "+268", "Ethiopia": "+251", "Finland": "+358", "France": "+33", "Gabon": "+241",
+  "Gambia": "+220", "Georgia": "+995", "Germany": "+49", "Ghana": "+233", "Greece": "+30",
+  "Greenland": "+299", "Guatemala": "+502", "Guinea": "+224", "Haiti": "+509", "Honduras": "+504",
+  "Hong Kong": "+852", "Hungary": "+36", "Iceland": "+354", "India": "+91", "Indonesia": "+62",
+  "Iran": "+98", "Iraq": "+964", "Ireland": "+353", "Israel": "+972", "Italy": "+39",
+  "Jamaica": "+1-876", "Japan": "+81", "Jordan": "+962", "Kazakhstan": "+7", "Kenya": "+254",
+  "Kuwait": "+965", "Kyrgyzstan": "+996", "Laos": "+856", "Latvia": "+371", "Lebanon": "+961",
+  "Lesotho": "+266", "Liberia": "+231", "Libya": "+218", "Liechtenstein": "+423", "Lithuania": "+370",
+  "Luxembourg": "+352", "Madagascar": "+261", "Malawi": "+265", "Malaysia": "+60", "Maldives": "+960",
+  "Mali": "+223", "Malta": "+356", "Mauritania": "+222", "Mauritius": "+230", "Mexico": "+52",
+  "Moldova": "+373", "Monaco": "+377", "Mongolia": "+976", "Montenegro": "+382", "Morocco": "+212",
+  "Mozambique": "+258", "Namibia": "+264", "Nepal": "+977", "Netherlands": "+31", "New Zealand": "+64",
+  "Nicaragua": "+505", "Niger": "+227", "Nigeria": "+234", "North Macedonia": "+389", "Norway": "+47",
+  "Oman": "+968", "Pakistan": "+92", "Panama": "+507", "Paraguay": "+595", "Peru": "+51",
+  "Philippines": "+63", "Poland": "+48", "Portugal": "+351", "Qatar": "+974", "Romania": "+40",
+  "Russia": "+7", "Rwanda": "+250", "Saudi Arabia": "+966", "Senegal": "+221", "Serbia": "+381",
+  "Seychelles": "+248", "Sierra Leone": "+232", "Singapore": "+65", "Slovakia": "+421", "Slovenia": "+386",
+  "Somalia": "+252", "South Africa": "+27", "South Korea": "+82", "Spain": "+34", "Sri Lanka": "+94",
+  "Sudan": "+249", "Sweden": "+46", "Switzerland": "+41", "Syria": "+963", "Taiwan": "+886",
+  "Tanzania": "+255", "Thailand": "+66", "Togo": "+228", "Trinidad and Tobago": "+1-868", "Tunisia": "+216",
+  "Turkey": "+90", "Uganda": "+256", "Ukraine": "+380", "United Arab Emirates": "+971", "United Kingdom": "+44",
+  "United States": "+1", "Uruguay": "+598", "Uzbekistan": "+998", "Venezuela": "+58", "Vietnam": "+84",
+  "Yemen": "+967", "Zambia": "+260", "Zimbabwe": "+263"
+};
 
-  // List of countries and codes
-  const countries = {
-    "Nigeria": "+234",
-    "Ghana": "+233",
-    "United States": "+1",
-    "United Kingdom": "+44",
-    "Canada": "+1",
-    "South Africa": "+27",
-    "Kenya": "+254",
-    "India": "+91",
-    "Australia": "+61",
-    "Germany": "+49",
-    "France": "+33",
-    "Brazil": "+55",
-    "China": "+86",
-    "Japan": "+81",
-    "Italy": "+39",
-    "Spain": "+34",
-    "Netherlands": "+31",
-    "Mexico": "+52",
-    "Turkey": "+90",
-    "Saudi Arabia": "+966",
-    "United Arab Emirates": "+971",
-    "Russia": "+7",
-    "Egypt": "+20",
-    "South Korea": "+82",
-    "Argentina": "+54"
-    // You can add all countries if you want — this is a clean common list
-  };
 
-  // Populate dropdown
-  const countrySelect = document.getElementById("country");
-  Object.keys(countries).forEach(country => {
-    const option = document.createElement("option");
-    option.value = country;
-    option.textContent = country;
-    countrySelect.appendChild(option);
-  });
-
-  // Update phone field when country changes
-  const phoneInput = document.getElementById("phone");
-  countrySelect.addEventListener("change", () => {
-    const code = countries[countrySelect.value];
-    if (code) {
-      if (!phoneInput.value.startsWith(code)) {
-        phoneInput.value = code + " ";
-      }
+    const countrySelect = document.getElementById("country");
+    for (const [country, code] of Object.entries(countries)) {
+      const option = document.createElement("option");
+      option.value = `${country} (${code})`;
+      option.textContent = `${country} (${code})`;
+      countrySelect.appendChild(option);
     }
-  });
 
-  // Handle form submission
-  const form = document.getElementById("contactForm");
-  const sendBtn = document.getElementById("sendBtn");
+    // ===== FORM SUBMIT FUNCTION =====
+    const form = document.getElementById("contact-form");
+    const btn = document.getElementById("send-btn");
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    sendBtn.textContent = "Sending...";
-    sendBtn.disabled = true;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    emailjs.sendForm("service_wckfiao", "template_0pgj0dj", this)
+      btn.innerHTML = "Sending...";
+      btn.style.background = "#0288d1";
+      btn.disabled = true;
+
+      fetch("https://formsubmit.co/ajax/fountainsdata234@gmail.com", {  // replace with your email
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.value,
+          country: form.country.value,
+          phone: form.phone.value,
+          email: form.email.value,
+          message: form.message.value,
+        }),
+      })
+      .then(res => res.ok ? res.json() : Promise.reject(res))
       .then(() => {
-        sendBtn.textContent = "Sent ✓";
-        sendBtn.classList.add("sent");
+        btn.innerHTML = 'Sent <span class="tick">✔</span>';
+        btn.style.background = "#00e676";
 
         setTimeout(() => {
-          sendBtn.textContent = "Send Message";
-          sendBtn.classList.remove("sent");
-          sendBtn.disabled = false;
+          btn.innerHTML = "Send Message";
+          btn.style.background = "#4fc3f7";
+          btn.disabled = false;
           form.reset();
         }, 3000);
-      }, (error) => {
-        alert("Failed to send message. Please try again later.");
-        console.error(error);
-        sendBtn.textContent = "Send Message";
-        sendBtn.disabled = false;
+      })
+      .catch(() => {
+        btn.innerHTML = "Failed! Try Again";
+        btn.style.background = "#e53935";
+        setTimeout(() => {
+          btn.innerHTML = "Send Message";
+          btn.style.background = "#4fc3f7";
+          btn.disabled = false;
+        }, 3000);
       });
-  });
-</script>
-
+    });
+  </script>
 
 
   <script>
