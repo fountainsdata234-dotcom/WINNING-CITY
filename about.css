@@ -3,45 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-#loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(img/1749187969350.jpg) no-repeat center center/cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-.bouncing-text {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #fff;
-    animation: bounce 0.6s infinite alternate;
-}
-@keyframes bounce {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-20px);
-    }
-}
-#main-content {
-    display: none;
-    height: 100vh;
-    background: #111;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-}
+
 body {
     font-family: Arial, sans-serif;
-    min-height: 2750px;
+    min-height: 3650px;
     background: linear-gradient(135deg, #e8f1ff, #cfe9ff);
 }
 nav {
@@ -161,95 +126,119 @@ nav ul li.show .dropdown {
         display: flex;
     }
 }
-.header-logo-bounce {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 60px 20px 40px;
-    background-color: #fff;
-    overflow: hidden;
-}
-.header-container img.logo-img {
-    width: 100px;
-    height: auto;
-    animation: bounceIn 1s ease-out;
-}
-.header-container h2,
-.header-container h1 {
-    margin: 10px 0;
-    color: #2c3e50;
-    animation: bounceIn 1s ease-out;
-}
-.header-container h2 {
-    font-size: 24px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-.header-container h1 {
-    font-size: 32px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-@keyframes bounceIn {
-    0% {
-        transform: translateY(-200px);
-        opacity: 0;
-    }
-    60% {
-        transform: translateY(30px);
-        opacity: 1;
-    }
-    80% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-@media (max-width: 600px) {
-    .header-container h2 {
-        font-size: 18px;
-    }
-    .header-container h1 {
-        font-size: 24px;
-    }
-    .header-container img.logo-img {
-        width: 70px;
-    }
-}
+/* ===== General Section ===== */
 .about-section {
-    padding: 40px 20px;
-    background: #f4f4f4;
-    font-family: "Segoe UI", sans-serif;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #222;
 }
-.container {
-    max-width: 900px;
-    margin: auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+
+/* ===== Top Heading ===== */
+.about-top {
+  text-align: center;
+  margin-bottom: 3rem;
 }
-.about-section h2 {
-    color: #2c3e50;
-    margin-top: 30px;
+
+.church-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
 }
-.about-section p {
-    color: #555;
-    line-height: 1.8;
-    margin-top: 10px;
+
+.main-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #1e3d59;
+  opacity: 0;
+  transform: translateY(-500px);
 }
-@media (max-width: 600px) {
-    .about-section {
-        padding: 20px 10px;
-    }
-    .container {
-        padding: 20px;
-    }
-    .about-section p {
-        font-size: 15px;
-    }
+
+.sub-heading {
+  display: block;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: #ff6f61;
+  margin-top: 0.5rem;
+}
+
+/* ===== About Content ===== */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.about-item-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.about-img {
+  flex: 1 1 300px;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.about-text {
+  flex: 2 1 400px;
+}
+
+.about-item h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #1e3d59;
+  margin-bottom: 0.5rem;
+}
+
+.about-item p {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  line-height: 1.6;
+  color: #444;
+}
+
+/* ===== Bounce Animation ===== */
+@keyframes bounceIn {
+  0% {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(30px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.bounce-animate {
+  animation: bounceIn 1s ease forwards;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .about-item-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text {
+    flex: 1 1 100%;
+  }
+
+  .about-img {
+    max-width: 100%;
+  }
 }
 .sermon-box {
     width: 80%;
@@ -269,7 +258,7 @@ nav ul li.show .dropdown {
     transition: all 0.3s ease;
 }
 .sermon-box a {
-    color: red;
+    color: #04c;
     font-weight: 600;
     text-decoration: none;
 }
@@ -409,103 +398,139 @@ footer p.p2 {
     background: #555;
     border-radius: 10px;
 }
-@media (max-width: 360px) {
-    nav {
-        padding: 10px 15px;
-    }
-    nav .logo {
-        font-size: 16px;
-    }
-    nav ul li a {
-        font-size: 14px;
-    }
-    .header-container h1 {
-        font-size: 22px;
-    }
-    .header-container h2 {
-        font-size: 16px;
-    }
-    .sermon-box {
-        font-size: 0.9rem;
+.support-box {
+    max-width: 350px;
+    height: 10em;
+    padding: 20px;
+    background-image: url(img/beautiful-cloudscape.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 0.1);
+    text-align: center;
+    margin: -60px auto;
+    position: relative;
+}
+.support-box h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 700;
+}
+.support-btn {
+    background-color: #2d89ef;
+    margin-top: 40px;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease;
+}
+.support-btn:hover {
+    background-color: #1e5cb3;
+    transform: scale(1.05);
+}
+@media (max-width: 500px) {
+    .support-box {
+        max-width: 90%;
         padding: 15px;
     }
-    .button {
-        width: 45px;
-        height: 45px;
+    .support-btn {
+        width: 100%;
     }
-    footer p {
-        font-size: 13px;
+}
+@media (max-width: 768px) {
+    .container {
+        font-size: 1rem;
+        line-height: 2;
+        max-width: 95%;
+        padding: 15px;
+    }
+    .container span {
+        top: -6rem;
+        margin-right: 5px;
+    }
+    #loader {
+        background-size: cover;
+    }
+    .bouncing-text {
+        font-size: 1.8rem;
     }
 }
 @media (max-width: 480px) {
+    .container {
+        font-size: 0.9rem;
+        line-height: 1.8;
+        max-width: 98%;
+        padding: 10px;
+    }
+    .container span {
+        top: -4rem;
+        margin-right: 3px;
+    }
+    .bouncing-text {
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 360px) {
+    html,
+    body {
+        font-size: 14px;
+    }
     nav ul {
         width: 100%;
     }
+    .carousel-btn {
+        font-size: 1.2rem;
+        padding: 0.3rem 0.6rem;
+    }
     .cover-btn {
         font-size: 0.9rem;
-        padding: 0.5rem 1rem;
+        padding: 0.6rem 1rem;
     }
-    .about-section p {
-        font-size: 15px;
-        line-height: 1.6;
+    .cover-label {
+        font-size: 0.8rem;
+        right: -20px;
     }
     .sermon-box {
-        width: 90%;
-        margin: 50px auto;
-    }
-    footer.show {
-        height: auto;
-    }
-    .footer-links {
-        flex-direction: column;
-        gap: 15px;
+        font-size: 0.9rem;
     }
 }
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 769px) and (max-width: 1024px) {
     nav {
-        padding: 15px 25px;
+        padding: 20px 40px;
     }
-    .header-container h1 {
-        font-size: 26px;
+    .carousel {
+        height: 80vh;
     }
-    .header-container h2 {
-        font-size: 18px;
+    .cover-content {
+        width: 80%;
     }
-    .about-section .container {
-        padding: 25px;
+    .second-cover .cover-content {
+        width: 80%;
     }
     .sermon-box {
         width: 85%;
         font-size: 1.1rem;
     }
-    footer p.p2 {
-        font-size: 17px;
-    }
-}
-@media (min-width: 769px) and (max-width: 1024px) {
-    nav {
-        padding: 15px 40px;
-    }
-    .container {
-        max-width: 85%;
-    }
-    .sermon-box {
-        width: 70%;
-        font-size: 1.2rem;
-    }
-    footer.show {
-        height: 280px;
-    }
 }
 @media (min-width: 1025px) and (max-width: 1366px) {
-    .container {
-        max-width: 80%;
+    .carousel {
+        height: 90vh;
     }
-    .sermon-box {
+    .cover-content {
         width: 65%;
     }
-    .header-container h1 {
-        font-size: 30px;
+    .second-cover .cover-content {
+        width: 65%;
+    }
+    .container {
+        font-size: 1.1rem;
     }
 }
 @media (min-width: 1367px) {
@@ -515,11 +540,14 @@ footer p.p2 {
     .container {
         max-width: 70%;
     }
-    .sermon-box {
+    .carousel {
+        height: 100vh;
+    }
+    .cover-content {
         width: 60%;
     }
-    footer.show {
-        height: 320px;
+    .second-cover .cover-content {
+        width: 60%;
     }
 }
 @media (min-width: 1800px) {
@@ -529,18 +557,16 @@ footer p.p2 {
     .container {
         max-width: 60%;
     }
-    nav {
-        padding: 25px 80px;
-    }
-    .sermon-box {
-        width: 55%;
+    .carousel img {
+        object-fit: contain;
     }
 }
+
+/* ==================== RESPONSIVE FIX ==================== */
 @media (max-width: 1024px) {
-  footer {
-    height: auto;
-    padding: 20px 0;
-    position: relative;
+  
+    footer.show {
+        height: 280px;
   }
 
   .footer-content {
