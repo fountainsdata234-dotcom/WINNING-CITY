@@ -7,7 +7,13 @@
    <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+
+ <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+
+
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
@@ -65,7 +71,7 @@
     }
   }
 </style>
-  <link rel="stylesheet" href="media.css">
+  <link rel="stylesheet" href="contact.css">
 </head>
 
 <body>
@@ -92,17 +98,13 @@
         </div>
       </li>
       <li>
-        <a href="about.html" class="active">Media </a>
+        <a href="about.html" >Media </a>
       </li>
       <li>
-        <a href="#" class="dropdown-toggle">Event Calender ▾</a>
-        <div class="dropdown">
-          <a href="#">This Week</a>
-          <a href="#">This Month</a>
-        </div>
+        <a href="event.html" class="dropdown-toggle">Event Calender ▾</a>
       </li>
       <li>
-        <a href="#" class="dropdown-toggle">Contact ▾</a>
+        <a href="#" class="dropdown-toggle, class=active">Contact ▾</a>
         <div class="dropdown">
           <a href="contact.html">Email Us</a>
           <a href="contact.html">Whatsapp</a>
@@ -110,124 +112,42 @@
       </li>
     </ul>
   </nav>
-  
-    <div class="tv-container">
-    <div class="tv-screen" id="tvScreen">
-      <img id="placeholder" src="img/wow.jpg" alt="TV Image" />
-      <iframe id="videoFrame" allowfullscreen></iframe>
-    </div>
+<div class="contact-wrapper">
+  <div class="contact-container">
+    <h2>Contact Me</h2>
+    <form id="contactForm" action="https://formsubmit.co/fountainsdata234@gmail.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://fountainsdata234-dotcom.github.io/WINNING-CITY/">
 
-    <select class="video-select" id="videoSelect" onchange="playVideo()">
-      <option value="">-- Select a Message --</option>
-      <option value="https://www.youtube.com/embed/5qap5aO4i9A">Sunday Service</option>
-      <option value="https://www.youtube.com/embed/tgbNymZ7vqY">Youth Revival</option>
-      <option value="https://www.youtube.com/embed/ScMzIvxBSi4">Praise Night</option>
-      <option value="https://www.youtube.com/embed/OQSNhk5ICTI">Testimony Session</option>
-      <option value="https://www.youtube.com/embed/YE7VzlLtp-4">Building Project Update</option>
-    </select>
-  </div>
+      <input type="text" name="Name" placeholder="Your Full Name" required>
+      <select id="country" name="Country" required>
+        <option value="">Select Country</option>
+      </select>
+      <input id="phone" name="phone" type="tel" placeholder="Enter your phone number" required>
 
-  <div class="extra-content">
-    <p><center>follow us on</center></p>
-     <div class="wrapper1">
-    <div class="button1">
-       <div class="icon1">
-         <i class="fa fa-facebook"></i> 
-       </div>
-    </div>
+      <input type="email" name="Email" placeholder="Your Email Address" required>
+      <textarea name="Message" placeholder="Your Message" required></textarea>
+     <button type="submit" id="sendButton">Send Message</button>
 
-<div class="button1">
-    <div class="icon">
-      <i class="fa fa-twitter"></i> 
-</div>
-</div>
-
-<div class="button1">
-<div class="icon">
-  <i class="fa fa-instagram"></i> 
-</div>
-</div>
-
-<div class="button1">
-<div class="icon">
-  <i class="fa fa-youtube"></i> 
-
-</div>
-</div>
-
-</div>
-  </div>
-  <div class="audio-section">
-  <h2>Listen to Rev. S.G Erochukwu audio messages here</h2>
-
-  <div class="audio-box audio1">
-  <audio controls>
-    <source src="audio/My Heart - Chris Okolo_085914.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</div>
-
-<div class="audio-box audio2">
-  <audio controls>
-    <source src="audio/Nathaniel-Bassey-Book-Of-Life-[TrendyBeatz.com](0)_093802.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</div>
-
-<div class="audio-box audio3">
-  <audio controls>
-    <source src="audio/Nathaniel_Bassey_-_The_Champion_CeeNaija.com_.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</div>
-
-  </div>
-
-  <div class="audio-wrapper">
-  <a href="your-link.html" class="load-more-btn">Load More Audio</a>
-</div>
-</div>
-<div class="book-container">
-  <h2>Recommended Books</h2>
-  <div class="book">
-    <img src="img/101.jpg" alt="Book 1">
-    <div class="overlay">
-      <a href="#" class="read-btn">Read Now</a>
-    </div>
-  </div>
-
-  <div class="book">
-    <img src="img/eden.jpg" alt="Book 2">
-    <div class="overlay">
-      <a href="#" class="read-btn">Read Now</a>
-    </div>
-  </div>
-
-  <div class="book">
-    <img src="img/healthy.jpg" alt="Book 3">
-    <div class="overlay">
-      <a href="#" class="read-btn">Read Now</a>
-    </div>
-  </div>
-
-  <div class="book">
-    <img src="img/late.jpg" alt="Book 4">
-    <div class="overlay">
-      <a href="#" class="read-btn">Read Now</a>
-    </div>
+    </form>
   </div>
 </div>
 
-<div class="carousel-container">
-  <div class="carousel">
-    <div class="slide"><img src="img/conquer-top.jpg" alt="Slide 1"></div>
-    <div class="slide"><img src="img/rear-view-excited-fans-having-fun-music-festival-taking-pictures-stage-with-their-smart-phones-copy-space.jpg" alt="Slide 2"></div>
-    <div class="slide"><img src="img/beautiful-cloudscape.jpg" alt="Slide 3"></div>
-    <div class="slide"><img src="img/alex-gallegos-qrjlTYoSriE-unsplash (1).jpg" alt="Slide 4"></div>
+<div class="whatsapp-section">
+  <div class="whatsapp-contact">
+    <span>‪+2348029772375‬</span>
+    <a href="https://wa.me/2348029772375" target="_blank" class="wa-btn">Message Us</a>
   </div>
-  <button class="nav prev">&#10094;</button>
-  <button class="nav next">&#10095;</button>
+  <div class="whatsapp-contact">
+    <span>‪+2349039054705‬</span>
+    <a href="https://wa.me/2349039054705" target="_blank" class="wa-btn">Message Us</a>
+  </div>
 </div>
+
+
+
+
+
 <footer id="footer">
   <div class="footer-content">
     <p class="p2">Follow us on</p>
@@ -286,85 +206,115 @@
   </div>
 
 </footer>
- <script>
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const docHeight = document.body.offsetHeight;
 
-    if (scrollTop + windowHeight >= docHeight - 5) {
-      document.getElementById("footer").classList.add("show");
-    } else {
-      document.getElementById("footer").classList.remove("show");
+<script>
+    // ===== COUNTRY LIST + CODE =====
+    const countries = {
+  "Afghanistan": "+93", "Albania": "+355", "Algeria": "+213", "Andorra": "+376", "Angola": "+244",
+  "Argentina": "+54", "Armenia": "+374", "Australia": "+61", "Austria": "+43", "Azerbaijan": "+994",
+  "Bahamas": "+1-242", "Bahrain": "+973", "Bangladesh": "+880", "Barbados": "+1-246", "Belarus": "+375",
+  "Belgium": "+32", "Belize": "+501", "Benin": "+229", "Bhutan": "+975", "Bolivia": "+591",
+  "Bosnia and Herzegovina": "+387", "Botswana": "+267", "Brazil": "+55", "Brunei": "+673", "Bulgaria": "+359",
+  "Burkina Faso": "+226", "Burundi": "+257", "Cambodia": "+855", "Cameroon": "+237", "Canada": "+1",
+  "Cape Verde": "+238", "Central African Republic": "+236", "Chad": "+235", "Chile": "+56", "China": "+86",
+  "Colombia": "+57", "Congo": "+242", "Costa Rica": "+506", "Croatia": "+385", "Cuba": "+53",
+  "Cyprus": "+357", "Czech Republic": "+420", "Denmark": "+45", "Dominican Republic": "+1-809", "Ecuador": "+593",
+  "Egypt": "+20", "El Salvador": "+503", "Equatorial Guinea": "+240", "Eritrea": "+291", "Estonia": "+372",
+  "Eswatini": "+268", "Ethiopia": "+251", "Finland": "+358", "France": "+33", "Gabon": "+241",
+  "Gambia": "+220", "Georgia": "+995", "Germany": "+49", "Ghana": "+233", "Greece": "+30",
+  "Greenland": "+299", "Guatemala": "+502", "Guinea": "+224", "Haiti": "+509", "Honduras": "+504",
+  "Hong Kong": "+852", "Hungary": "+36", "Iceland": "+354", "India": "+91", "Indonesia": "+62",
+  "Iran": "+98", "Iraq": "+964", "Ireland": "+353", "Israel": "+972", "Italy": "+39",
+  "Jamaica": "+1-876", "Japan": "+81", "Jordan": "+962", "Kazakhstan": "+7", "Kenya": "+254",
+  "Kuwait": "+965", "Kyrgyzstan": "+996", "Laos": "+856", "Latvia": "+371", "Lebanon": "+961",
+  "Lesotho": "+266", "Liberia": "+231", "Libya": "+218", "Liechtenstein": "+423", "Lithuania": "+370",
+  "Luxembourg": "+352", "Madagascar": "+261", "Malawi": "+265", "Malaysia": "+60", "Maldives": "+960",
+  "Mali": "+223", "Malta": "+356", "Mauritania": "+222", "Mauritius": "+230", "Mexico": "+52",
+  "Moldova": "+373", "Monaco": "+377", "Mongolia": "+976", "Montenegro": "+382", "Morocco": "+212",
+  "Mozambique": "+258", "Namibia": "+264", "Nepal": "+977", "Netherlands": "+31", "New Zealand": "+64",
+  "Nicaragua": "+505", "Niger": "+227", "Nigeria": "+234", "North Macedonia": "+389", "Norway": "+47",
+  "Oman": "+968", "Pakistan": "+92", "Panama": "+507", "Paraguay": "+595", "Peru": "+51",
+  "Philippines": "+63", "Poland": "+48", "Portugal": "+351", "Qatar": "+974", "Romania": "+40",
+  "Russia": "+7", "Rwanda": "+250", "Saudi Arabia": "+966", "Senegal": "+221", "Serbia": "+381",
+  "Seychelles": "+248", "Sierra Leone": "+232", "Singapore": "+65", "Slovakia": "+421", "Slovenia": "+386",
+  "Somalia": "+252", "South Africa": "+27", "South Korea": "+82", "Spain": "+34", "Sri Lanka": "+94",
+  "Sudan": "+249", "Sweden": "+46", "Switzerland": "+41", "Syria": "+963", "Taiwan": "+886",
+  "Tanzania": "+255", "Thailand": "+66", "Togo": "+228", "Trinidad and Tobago": "+1-868", "Tunisia": "+216",
+  "Turkey": "+90", "Uganda": "+256", "Ukraine": "+380", "United Arab Emirates": "+971", "United Kingdom": "+44",
+  "United States": "+1", "Uruguay": "+598", "Uzbekistan": "+998", "Venezuela": "+58", "Vietnam": "+84",
+  "Yemen": "+967", "Zambia": "+260", "Zimbabwe": "+263"
+};
+
+
+    const countrySelect = document.getElementById("country");
+    for (const [country, code] of Object.entries(countries)) {
+      const option = document.createElement("option");
+      option.value = `${country} (${code})`;
+      option.textContent = `${country} (${code})`;
+      countrySelect.appendChild(option);
     }
+</script>
+<!-- ✅ Include these before the script (preferably in your <head>) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+
+<!-- ✅ Then add this JS just before </body> -->
+<script>
+  // Initialize the smart phone input
+  const phoneInputField = document.querySelector("#phone");
+  const phoneInput = window.intlTelInput(phoneInputField, {
+    initialCountry: "ng", // default country
+    preferredCountries: ["ng", "us", "gb", "gh", "za"],
+    nationalMode: false, // always show full international format
+    utilsScript:
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js", // for formatting and validation
+  });
+
+  // Handle form submission with animated button
+  const form = document.querySelector("#contactForm");
+  const sendButton = document.querySelector("#sendButton");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // stop default page reload
+
+    const phoneNumber = phoneInput.getNumber(); // get full phone with +code
+
+    // ✅ Check if the phone number matches the selected country
+    if (!phoneInput.isValidNumber()) {
+      alert("Please enter a valid phone number for your selected country.");
+      return;
+    }
+
+    sendButton.innerText = "Sending...";
+    sendButton.disabled = true;
+
+    // collect all form data
+    const formData = new FormData(form);
+    formData.set("phone", phoneNumber); // replace normal number with full intl version
+
+    // Send form data to FormSubmit (your email)
+    fetch(form.action, {
+  method: "POST",
+  body: formData,
+  mode: "no-cors" // prevents browser blocking
+})
+  .then(() => {
+    sendButton.innerText = "Sent ✓";
+    form.reset();
+    setTimeout(() => {
+      sendButton.innerText = "Send Message";
+      sendButton.disabled = false;
+    }, 4000);
+  })
+  .catch(() => {
+    alert("Error sending message.");
+    sendButton.innerText = "Send Message";
+    sendButton.disabled = false;
+  });
   });
 </script>
 
-<script>
-  window.onload = () => {
-    const carousel = document.querySelector('.carousel');
-    const slides = document.querySelectorAll('.slide');
-    const prev = document.querySelector('.prev');
-    const next = document.querySelector('.next');
-    let index = 0;
 
-    function showSlide(i) {
-      if (i < 0) index = slides.length - 1;
-      else if (i >= slides.length) index = 0;
-      else index = i;
-      carousel.style.transform = `translateX(-${index * 100}%)`;
-    }
-
-    prev.addEventListener('click', () => {
-      showSlide(index - 1);
-      resetAutoSlide();
-    });
-
-    next.addEventListener('click', () => {
-      showSlide(index + 1);
-      resetAutoSlide();
-    });
-
-    function autoSlide() {
-      index++;
-      showSlide(index);
-    }
-let slideInterval = setInterval(autoSlide, 4000); // change slide every 4 seconds
-
-    function resetAutoSlide() {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(autoSlide, 4000);
-    }
-
-    showSlide(index);
-  };
-</script>
-
-
-
-
-
-  <script>
-    function playVideo() {
-      const select = document.getElementById('videoSelect');
-      const videoURL = select.value;
-      const placeholder = document.getElementById('placeholder');
-      const videoFrame = document.getElementById('videoFrame');
-
-      if (videoURL) {
-        placeholder.style.display = 'none';
-        videoFrame.src = videoURL + "?autoplay=1&rel=0";
-        videoFrame.style.display = 'block';
-      } else {
-        videoFrame.src = "";
-        videoFrame.style.display = 'none';
-        placeholder.style.display = 'block';
-      }
- }
-  </script>
-
-
-  
   <script>
     // Navbar background on scroll
     window.addEventListener("scroll", function () {
@@ -401,45 +351,6 @@ let slideInterval = setInterval(autoSlide, 4000); // change slide every 4 second
     });
   </script>
   <script>
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("loader");
-      const content = document.getElementById("main-content");
-
-      loader.style.display = "none";
-      content.style.display = "flex";
-    });
-  </script>
-
-  <script>
-    const message = "WELCOME TO WINNING LIFE BIBLE CHURCH..... GOD OUR RIGHTEOUSNESS";
-    const container = document.getElementById("welcomeText");
-
-    const words = message.split(" ");
-    words.forEach(word => {
-      const span = document.createElement("span");
-      span.textContent = word;
-      container.appendChild(span);
-    });
-
-      window.onload = () => {
-      gsap.fromTo(".container span", {
-        y: () => gsap.utils.random(-300, -150),
-        opacity: 0,
-        scale: 0.5,
-        rotation: () => gsap.utils.random(-45, 45)
-      }, {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "bounce.out"
-      });
-    };
-
-  </script>
-  <script>
   window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
     const windowHeight = window.innerHeight;
@@ -452,8 +363,7 @@ let slideInterval = setInterval(autoSlide, 4000); // change slide every 4 second
     }
   });
 </script>
-
-  <script>
+<script>
   // === DKing Scroll Script ===
   const dkingScrollBtn = document.getElementById("dkingScrollBtn");
 
@@ -475,33 +385,6 @@ let slideInterval = setInterval(autoSlide, 4000); // change slide every 4 second
  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-<script>
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.fromTo(".sermon-box",
-    {
-      opacity: 0,
-      rotateY: 90,
-      filter: "blur(10px)"
-    },
-    {
-      opacity: 1,
-      rotateY: 0,
-      filter: "blur(0px)",
-      duration: 0.1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".sermon-box",
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play reverse play reverse", 
-        // ↑ play when entering, reverse when leaving
-        markers: false // set to true for debugging
-      }
-    }
-  );
-</script>
-
-  </body>
-  </html>
-
+<script src="script.js"></script>
+</body>
+</html>
