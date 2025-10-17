@@ -7,7 +7,7 @@
    <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
@@ -70,7 +70,8 @@
 
 <body>
 
-   
+ 
+  
 
 
 
@@ -98,7 +99,7 @@
       <li>
         <a href="#" class="dropdown-toggle">Event Calender ▾</a>
         <div class="dropdown">
-          <a href="#">This Week</a>
+          <a href="event.html">This Week</a>
           <a href="#">This Month</a>
         </div>
       </li>
@@ -109,8 +110,17 @@
           <a href="contact.html">Whatsapp</a>
         </div>
       </li>
+      <li>
+        <label class="theme-switch">
+  <input type="checkbox" id="mode-toggle">
+  <span class="slider"></span>
+</label>
+
+      </li>
     </ul>
+   
   </nav>
+
 
 </head>
 <div class="carousel">
@@ -132,23 +142,15 @@
 </div>
 <!-- ...existing code... -->
  <div class="cover">
-  <div class="floating-squares">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  
-</div>
+ 
+
 
     <div class="cover-content">
      
     <div class="cover-label">watch live</div>
     <div class="cover-bg">
         <button class="cover-btn">watch our live sermon here</button>
+        <div id="countdown-message"></div>
     </div>
 </div>
 </div>
@@ -237,8 +239,94 @@
 
 </footer>
 
- 
-<body>
+ <div id="clock-container">
+  <div id="clock-header">
+    <span id="digital-clock">--:--:--</span>
+    <span id="dropdown-arrow">&#9662;</span>
+  </div>
+  <div id="popup-info">
+    <p>Live service begins at <strong>7:00 PM GMT</strong></p>
+  </div>
+</div>
+<script>
+  // Set your live stream start time (adjust as needed)
+const liveStartTime = new Date('2025-11-17T20:00:00Z'); // 7:00 PM GMT
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = liveStartTime - now;
+
+  const countdownEl = document.getElementById('countdown-message');
+
+  if (diff > 0) {
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    countdownEl.textContent = `Live service starts in ${hours}h ${minutes}m ${seconds}s`;
+  } else {
+    countdownEl.textContent = `🎥 Live service is now live!`;
+  }
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+</script>
+<script>
+// Live Clock
+function updateClock() {
+  const now = new Date();
+  document.getElementById('digital-clock').textContent = now.toLocaleTimeString();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Toggle Dropdown
+document.getElementById('dropdown-arrow').addEventListener('click', () => {
+  const popup = document.getElementById('popup-info');
+  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+});
+
+// Drag & Touch Support
+const clock = document.getElementById('clock-container');
+let isDragging = false, offsetX = 0, offsetY = 0;
+
+const startDrag = (x, y) => {
+  isDragging = true;
+  offsetX = x - clock.offsetLeft;
+  offsetY = y - clock.offsetTop;
+};
+
+const moveDrag = (x, y) => {
+  if (isDragging) {
+    clock.style.left = `${x - offsetX}px`;
+    clock.style.top = `${y - offsetY}px`;
+  }
+};
+
+const stopDrag = () => {
+  isDragging = false;
+};
+
+// Mouse Events
+clock.addEventListener('mousedown', e => startDrag(e.clientX, e.clientY));
+document.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
+document.addEventListener('mouseup', stopDrag);
+
+// Touch Events
+clock.addEventListener('touchstart', e => {
+  const touch = e.touches[0];
+  startDrag(touch.clientX, touch.clientY);
+});
+document.addEventListener('touchmove', e => {
+  const touch = e.touches[0];
+  moveDrag(touch.clientX, touch.clientY);
+});
+
+document.addEventListener('touchend', stopDrag);
+</script>
+
   <script>
   window.addEventListener("scroll", () => {
     const scrollTop = window.scrollY;
@@ -288,10 +376,8 @@ prevBtn.onclick=()=>{stopAutoSlide();prevImage();startAutoSlide()};nextBtn.oncli
 
   </script>
 
-
     </body>
 </html>
-
 
 
 
