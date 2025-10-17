@@ -126,113 +126,110 @@ nav ul li.show .dropdown {
         display: flex;
     }
 }
-/* Outer wrapper: centers the whole form */
 .contact-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 10px;
+    background: #0f0f0f; /* you can remove or change */
+  }
 
-/* Main form box */
-.contact-container {
-  width: 90%;
-  max-width: 450px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  padding: 25px 30px;
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.85); /* semi-transparent white */
-  backdrop-filter: blur(10px); /* glassy effect (optional) */
-}
-
-/* If you're adding your own background image/color, just override this: */
-.contact-container {
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('img/beautiful-cloudscape.jpg') center/cover;
-}
-
-/* Title */
-.contact-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #0077b6;
-  font-size: 1.6rem;
-}
-
-/* Form fields */
-.contact-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.contact-container input,
-.contact-container select,
-.contact-container textarea,
-.contact-container button {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contact-container input:focus,
-.contact-container select:focus,
-.contact-container textarea:focus {
-  border-color: #0077b6;
-  box-shadow: 0 0 5px rgba(0,119,182,0.3);
-}
-
-/* Textarea */
-.contact-container textarea {
-  resize: none;
-  height: 100px;
-}
-
-/* Button styling */
-.contact-container button {
-  background: #0077b6;
-  color: #fff;
-  border: none;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.1s ease;
-}
-
-.contact-container button:hover {
-  background: #0096c7;
-  transform: scale(1.02);
-}
-
-.contact-container button.sending {
-  background: #00b4d8;
-}
-
-.contact-container button.sent {
-  background: #28a745;
-}
-
-/* Mobile responsive */
-@media (max-width: 600px) {
   .contact-container {
-    width: 95%;
-    padding: 20px;
-    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    background: #1a1a1a;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
   }
 
-  .contact-container h2 {
-    font-size: 20px;
+  /* ✅ Left Image */
+  .contact-image {
+    flex: 1 1 40%;
+    background: #222;
   }
-}
 
+  .contact-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ✅ Form Box */
+  .contact-form-box {
+    flex: 1 1 60%;
+    padding: 35px;
+    color: white;
+  }
+
+  .contact-form-box h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #00b3ff;
+  }
+
+  /* ✅ Inputs */
+  #contactForm input,
+  #contactForm select,
+  #contactForm textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    background: #0f0f0f;
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s;
+  }
+
+  #contactForm input:focus,
+  #contactForm select:focus,
+  #contactForm textarea:focus {
+    border: 1px solid #00b3ff;
+  }
+
+  /* ✅ Button */
+  #sendButton {
+    width: 100%;
+    padding: 12px;
+    background: #00b3ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  #sendButton:hover {
+    background: #0096e6;
+  }
+
+  #sendButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* ✅ Responsive Design */
+  @media (max-width: 768px) {
+    .contact-container {
+      flex-direction: column;
+    }
+    .contact-image {
+      display: none; /* hide image on small screens */
+    }
+    .contact-form-box {
+      flex: 1 1 100%;
+      padding: 25px;
+    }
+  }
 
 
 .whatsapp-section {
