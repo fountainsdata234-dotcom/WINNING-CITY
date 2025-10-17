@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Winning City Media</title>
+  <title>Winning City // contact us</title>
    <link rel="icon" type="image/x-icon" href="images\Retouch_20241018_160117602.png">
    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,26 +112,55 @@
       </li>
     </ul>
   </nav>
+
+<!-- ✅ Contact Section -->
 <div class="contact-wrapper">
   <div class="contact-container">
     <h2>Contact Me</h2>
-    <form id="contactForm" action="https://formsubmit.co/fountainsdata234@gmail.com" method="POST">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://fountainsdata234-dotcom.github.io/WINNING-CITY/">
-  <input type="hidden" name="_template" value="box">
+    <form
+      id="contactForm"
+      action="https://formsubmit.co/fountainsdata234@gmail.com"
+      method="POST"
+      target="hidden_iframe"
+    >
+      <!-- Hidden configs -->
+      <input type="hidden" name="_captcha" value="false" />
+      <input
+        type="hidden"
+        name="_next"
+        value="https://fountainsdata234-dotcom.github.io/WINNING-CITY/"
+      />
 
-  <input type="text" name="name" placeholder="Your Full Name" required>
-  <select id="country" name="country" required>
-    <option value="">Select Country</option>
-  </select>
-  <input id="phone" name="phone" type="tel" placeholder="Enter your phone number" required>
-  <input type="email" name="email" placeholder="Your Email Address" required>
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button type="submit" id="sendButton">Send Message</button>
-</form>
+      <input type="text" name="Name" placeholder="Your Full Name" required />
 
+      <select id="country" name="Country" required>
+        <option value="">Select Country</option>
+      </select>
+
+      <input
+        id="phone"
+        name="phone"
+        type="tel"
+        placeholder="Enter your phone number"
+        required
+      />
+
+      <input type="email" name="Email" placeholder="Your Email Address" required />
+      <textarea name="Message" placeholder="Your Message" required></textarea>
+
+      <button type="submit" id="sendButton">
+        <span class="btn-text">Send Message</span>
+      </button>
+    </form>
+
+    <!-- Hidden iframe (prevents redirect) -->
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
 </div>
+
+
+
+
 
 <div class="whatsapp-section">
   <div class="whatsapp-contact">
@@ -206,65 +235,17 @@
   </div>
 
 </footer>
-
-<script>
-    // ===== COUNTRY LIST + CODE =====
-    const countries = {
-  "Afghanistan": "+93", "Albania": "+355", "Algeria": "+213", "Andorra": "+376", "Angola": "+244",
-  "Argentina": "+54", "Armenia": "+374", "Australia": "+61", "Austria": "+43", "Azerbaijan": "+994",
-  "Bahamas": "+1-242", "Bahrain": "+973", "Bangladesh": "+880", "Barbados": "+1-246", "Belarus": "+375",
-  "Belgium": "+32", "Belize": "+501", "Benin": "+229", "Bhutan": "+975", "Bolivia": "+591",
-  "Bosnia and Herzegovina": "+387", "Botswana": "+267", "Brazil": "+55", "Brunei": "+673", "Bulgaria": "+359",
-  "Burkina Faso": "+226", "Burundi": "+257", "Cambodia": "+855", "Cameroon": "+237", "Canada": "+1",
-  "Cape Verde": "+238", "Central African Republic": "+236", "Chad": "+235", "Chile": "+56", "China": "+86",
-  "Colombia": "+57", "Congo": "+242", "Costa Rica": "+506", "Croatia": "+385", "Cuba": "+53",
-  "Cyprus": "+357", "Czech Republic": "+420", "Denmark": "+45", "Dominican Republic": "+1-809", "Ecuador": "+593",
-  "Egypt": "+20", "El Salvador": "+503", "Equatorial Guinea": "+240", "Eritrea": "+291", "Estonia": "+372",
-  "Eswatini": "+268", "Ethiopia": "+251", "Finland": "+358", "France": "+33", "Gabon": "+241",
-  "Gambia": "+220", "Georgia": "+995", "Germany": "+49", "Ghana": "+233", "Greece": "+30",
-  "Greenland": "+299", "Guatemala": "+502", "Guinea": "+224", "Haiti": "+509", "Honduras": "+504",
-  "Hong Kong": "+852", "Hungary": "+36", "Iceland": "+354", "India": "+91", "Indonesia": "+62",
-  "Iran": "+98", "Iraq": "+964", "Ireland": "+353", "Israel": "+972", "Italy": "+39",
-  "Jamaica": "+1-876", "Japan": "+81", "Jordan": "+962", "Kazakhstan": "+7", "Kenya": "+254",
-  "Kuwait": "+965", "Kyrgyzstan": "+996", "Laos": "+856", "Latvia": "+371", "Lebanon": "+961",
-  "Lesotho": "+266", "Liberia": "+231", "Libya": "+218", "Liechtenstein": "+423", "Lithuania": "+370",
-  "Luxembourg": "+352", "Madagascar": "+261", "Malawi": "+265", "Malaysia": "+60", "Maldives": "+960",
-  "Mali": "+223", "Malta": "+356", "Mauritania": "+222", "Mauritius": "+230", "Mexico": "+52",
-  "Moldova": "+373", "Monaco": "+377", "Mongolia": "+976", "Montenegro": "+382", "Morocco": "+212",
-  "Mozambique": "+258", "Namibia": "+264", "Nepal": "+977", "Netherlands": "+31", "New Zealand": "+64",
-  "Nicaragua": "+505", "Niger": "+227", "Nigeria": "+234", "North Macedonia": "+389", "Norway": "+47",
-  "Oman": "+968", "Pakistan": "+92", "Panama": "+507", "Paraguay": "+595", "Peru": "+51",
-  "Philippines": "+63", "Poland": "+48", "Portugal": "+351", "Qatar": "+974", "Romania": "+40",
-  "Russia": "+7", "Rwanda": "+250", "Saudi Arabia": "+966", "Senegal": "+221", "Serbia": "+381",
-  "Seychelles": "+248", "Sierra Leone": "+232", "Singapore": "+65", "Slovakia": "+421", "Slovenia": "+386",
-  "Somalia": "+252", "South Africa": "+27", "South Korea": "+82", "Spain": "+34", "Sri Lanka": "+94",
-  "Sudan": "+249", "Sweden": "+46", "Switzerland": "+41", "Syria": "+963", "Taiwan": "+886",
-  "Tanzania": "+255", "Thailand": "+66", "Togo": "+228", "Trinidad and Tobago": "+1-868", "Tunisia": "+216",
-  "Turkey": "+90", "Uganda": "+256", "Ukraine": "+380", "United Arab Emirates": "+971", "United Kingdom": "+44",
-  "United States": "+1", "Uruguay": "+598", "Uzbekistan": "+998", "Venezuela": "+58", "Vietnam": "+84",
-  "Yemen": "+967", "Zambia": "+260", "Zimbabwe": "+263"
-};
-
-
-    const countrySelect = document.getElementById("country");
-    for (const [country, code] of Object.entries(countries)) {
-      const option = document.createElement("option");
-      option.value = `${country} (${code})`;
-      option.textContent = `${country} (${code})`;
-      countrySelect.appendChild(option);
-    }
-</script>
-
-<!-- ✅ Must be before this script -->
+<!-- intl-tel-input JS -->
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const phoneInputField = document.querySelector("#phone");
-  const countrySelect = document.querySelector("#country");
   const form = document.querySelector("#contactForm");
   const sendButton = document.querySelector("#sendButton");
+  const phoneInputField = document.querySelector("#phone");
+  const countrySelect = document.querySelector("#country");
+  const btnText = sendButton.querySelector(".btn-text");
 
   // ✅ Initialize phone input
   const phoneInput = window.intlTelInput(phoneInputField, {
@@ -275,62 +256,74 @@ document.addEventListener("DOMContentLoaded", function () {
       "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
   });
 
-  // ✅ Populate all countries in dropdown
-  const countries = window.intlTelInputGlobals.getCountryData();
-  countries.forEach((c) => {
-    const option = document.createElement("option");
-    option.value = c.iso2;
-    option.textContent = `${c.name} (+${c.dialCode})`;
-    countrySelect.appendChild(option);
-  });
+  // ✅ Populate country dropdown
+  setTimeout(() => {
+    const countries = window.intlTelInputGlobals.getCountryData();
+    countrySelect.innerHTML = '<option value="">Select Country</option>';
+    countries.forEach((c) => {
+      const option = document.createElement("option");
+      option.value = c.iso2;
+      option.textContent = `${c.name} (+${c.dialCode})`;
+      countrySelect.appendChild(option);
+    });
+  }, 200);
 
-  // ✅ Change phone input when country changes
+  // ✅ Sync dropdown ↔ phone input
   countrySelect.addEventListener("change", function () {
-    if (this.value) {
-      phoneInput.setCountry(this.value);
-    }
+    if (this.value) phoneInput.setCountry(this.value);
+  });
+  phoneInputField.addEventListener("countrychange", function () {
+    const selected = phoneInput.getSelectedCountryData();
+    if (selected && selected.iso2) countrySelect.value = selected.iso2;
   });
 
-  // ✅ Handle submit
-  form.addEventListener("submit", async function (e) {
+  // ✅ Handle form submission
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const phoneNumber = phoneInput.getNumber();
     if (!phoneInput.isValidNumber()) {
-      alert("Please enter a valid phone number for your selected country.");
+      alert("⚠️ Please enter a valid phone number.");
       return;
     }
 
-    sendButton.innerText = "Sending...";
+    // 🎬 Button animation (sending)
+    sendButton.classList.add("sending");
+    btnText.textContent = "Sending...";
     sendButton.disabled = true;
 
     const formData = new FormData(form);
     formData.set("phone", phoneNumber);
 
-    try {
-      await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors", // ✅ prevents CORS block
-      });
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors",
+    })
+      .then(() => {
+        // ✅ Success
+        sendButton.classList.remove("sending");
+        sendButton.classList.add("sent");
+        btnText.textContent = "Sent ✓";
 
-      sendButton.innerText = "Sent ✓";
-      form.reset();
-
-      setTimeout(() => {
-        sendButton.innerText = "Send Message";
+        setTimeout(() => {
+          form.reset();
+          sendButton.classList.remove("sent");
+          btnText.textContent = "Send Message";
+          sendButton.disabled = false;
+        }, 3500);
+      })
+      .catch(() => {
+        alert("❌ Error sending message. Try again.");
+        sendButton.classList.remove("sending");
+        btnText.textContent = "Send Message";
         sendButton.disabled = false;
-      }, 4000);
-    } catch (error) {
-      console.error(error);
-      alert("Error sending message.");
-      sendButton.innerText = "Send Message";
-      sendButton.disabled = false;
-    }
+      });
   });
 });
 </script>
 
+</script>
   <script>
     // Navbar background on scroll
     window.addEventListener("scroll", function () {
