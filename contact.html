@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
   });
 
-  // Populate all countries
+  // Populate country dropdown
   setTimeout(() => {
     const countries = window.intlTelInputGlobals.getCountryData();
     countrySelect.innerHTML = '<option value="">Select Country</option>';
@@ -277,50 +277,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Handle form submission
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
+    // Validate phone number
     const phoneNumber = phoneInput.getNumber();
     if (!phoneInput.isValidNumber()) {
+      e.preventDefault();
       alert("⚠️ Please enter a valid phone number for your selected country.");
       return;
     }
+
+    // Set the proper phone number in the hidden field
+    form.querySelector('input[name="phone"]').value = phoneNumber;
 
     // Button animation (Sending...)
     btnText.textContent = "Sending...";
     sendButton.disabled = true;
     sendButton.style.backgroundColor = "#ff9d00";
 
-    const formData = new FormData(form);
-    formData.set("phone", phoneNumber);
+    // Let the form submit normally to the hidden iframe
+    setTimeout(() => {
+      btnText.textContent = "Sent ✓";
+      sendButton.style.backgroundColor = "#2ecc71"; // green
+      form.reset();
 
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-      mode: "no-cors",
-    })
-      .then(() => {
-        // Simulate success animation
-        setTimeout(() => {
-          btnText.textContent = "Sent ✓";
-          sendButton.style.backgroundColor = "#2ecc71"; // green
-          form.reset();
-        }, 1500);
-
-        setTimeout(() => {
-          btnText.textContent = "Send Message";
-          sendButton.style.backgroundColor = ""; // reset
-          sendButton.disabled = false;
-        }, 4000);
-      })
-      .catch(() => {
-        alert("❌ Error sending message. Please try again.");
+      setTimeout(() => {
         btnText.textContent = "Send Message";
+        sendButton.style.backgroundColor = ""; // reset
         sendButton.disabled = false;
-        sendButton.style.backgroundColor = "";
-      });
+      }, 2000);
+    }, 1500);
   });
 });
 </script>
+
 
 </script>
   <script>
